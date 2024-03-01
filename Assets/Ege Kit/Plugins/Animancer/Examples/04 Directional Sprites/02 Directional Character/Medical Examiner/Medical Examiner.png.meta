@@ -2452,9 +2452,9 @@ TextureImporter:
       Medical Examiner Run Up 0: 21300084
       Medical Examiner Climb Up 2: 21300180
       Medical Examiner Run Up 5: 21300094
+      Medical Examiner Talk Left 2: 21300140
       Medical Examiner Run Up 1: 21300086
       Medical Examiner Run Up 3: 21300090
-      Medical Examiner Talk Left 2: 21300140
       Medical Examiner Idle Up 0: 21300072
       Medical Examiner Walk Down 1: 21300078
       Medical Examiner Idle Left 1: 21300002
@@ -2507,9 +2507,9 @@ TextureImporter:
       Medical Examiner Climb Left 3: 21300134
       Medical Examiner Run Down 0: 21300060
       Medical Examiner Walk Down 3: 21300082
-      Medical Examiner Climb Down 1: 21300154
       Medical Examiner Climb Up 3: 21300182
       Medical Examiner Push Right 0: 21300096
+      Medical Examiner Climb Down 1: 21300154
       Medical Examiner Push Left 3: 21300126
       Medical Examiner Walk Down 0: 21300076
       Medical Examiner Climb Right 2: 21300108

@@ -31,7 +31,7 @@ public class UIManager : MonoSingleton<UIManager>
         get => moneyImage.transform;
     }
 
-    public void Init()
+    public void Init(bool mobileDeviceCheck)
     {
         levelManager = LevelManager.Instance;
         ActionManager.GameStart += OpenInGameUis;
@@ -48,6 +48,12 @@ public class UIManager : MonoSingleton<UIManager>
         {
             panels[i].Init();
         }
+
+        /*//fill it
+        for (int i = 0; i < skillButtons.Length; i++)
+        {
+            skillButtons[i].Init(mobileDeviceCheck);
+        }*/
     }
 
     public void DeInit()
@@ -64,6 +70,11 @@ public class UIManager : MonoSingleton<UIManager>
         {
             panels[i].DeInit();
         }
+
+        /*for (int i = 0; i < skillButtons.Length; i++)
+        {
+            skillButtons[i].DeInit();
+        }*/
     }
 
     public void LevelText()

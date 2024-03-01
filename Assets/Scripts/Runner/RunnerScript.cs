@@ -9,7 +9,6 @@ public class RunnerScript : MonoBehaviour
     [Header("Scripts and Transforms")]
     [SerializeField] private Transform model;
     [SerializeField] private Transform localMoverTarget;
-    [SerializeField] private PathCreator pathCreator;
     [SerializeField] private SimpleAnimancer animancer;
     [SerializeField] private PlayerSwerve playerSwerve;
 
@@ -24,10 +23,6 @@ public class RunnerScript : MonoBehaviour
     [SerializeField] private float characterSwipeLerpSpeed = 2f;
     [SerializeField] private float characterRotateLerpSpeed = 2f;
     [SerializeField] private bool canFollow = true;
-
-    [Header("Animations")]
-    [SerializeField] private AnimationClip runAnim;
-    private AnimationClip currentAnim;
 
     private Vector3 oldPosition;
     private bool canRun = false;
@@ -44,12 +39,8 @@ public class RunnerScript : MonoBehaviour
         ActionManager.SwerveValue += PlayerSwipe_OnSwerve;
         ActionManager.Updater += OnUpdate;
 
-        pathCreator = FindObjectOfType<PathCreator>();
-
         distance = startDistance;
-        //oldPosition = localMoverTarget.localPosition;
 
-        //PlayAnimation(runAnim);
         StartToRun(true);
     }
 
@@ -123,34 +114,14 @@ public class RunnerScript : MonoBehaviour
         }
     }
 
-    public void DodgeBack()
-    {
-        StartCoroutine(DodgeBackProcess());
-    }
-
-    IEnumerator DodgeBackProcess()
-    {
-        canSwerve = false;
-        canRun = false;
-        //PlayAnimation();
-
-        yield return new WaitForSeconds(0.633f);
-
-        //PlayAnimation();
-        canRun = true;
-        canSwerve = true;
-    }
-
     public void PlayAnimation(AnimationClip anim)
     {
         animancer.PlayAnimation(anim);
-        currentAnim = anim;
     }
 
     public void PlayAnimationWithSpeed(AnimationClip anim, float speed)
     {
         animancer.PlayAnimation(anim);
         animancer.SetStateSpeed(speed);
-        currentAnim = anim;
     }
 }

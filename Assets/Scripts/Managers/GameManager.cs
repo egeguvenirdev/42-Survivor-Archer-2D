@@ -15,8 +15,8 @@ public class GameManager : MonoSingleton<GameManager>
     private CamManager camManager;
     private MoneyManager moneyManager;
     private UIManager uIManager;
-    private BandRotator bandRotator;
     private ObjectPooler pooler;
+    private InputManager inputManager;
 
     void Start()
     {
@@ -26,6 +26,7 @@ public class GameManager : MonoSingleton<GameManager>
         moneyManager = MoneyManager.Instance;
         uIManager = UIManager.Instance;
         pooler = ObjectPooler.Instance;
+        inputManager = new InputManager();
         updateManager = FindObjectOfType<UpdateManager>();
         camManager = FindObjectOfType<CamManager>();
 
@@ -35,9 +36,10 @@ public class GameManager : MonoSingleton<GameManager>
     private void SetInits()
     {
         levelManager.Init();
-        uIManager.Init();
+        uIManager.Init(IsMobileDevice());
         moneyManager.Init();
         updateManager.Init();
+        inputManager.Init();
     }
 
     private void DeInits()
@@ -47,8 +49,8 @@ public class GameManager : MonoSingleton<GameManager>
         moneyManager.DeInit();
         updateManager.DeInit();
         camManager.DeInit();
-        bandRotator.DeInit();
         pooler.DeInit();
+        inputManager.Init();
     }
 
     public void OnStartTheGame()
@@ -59,9 +61,6 @@ public class GameManager : MonoSingleton<GameManager>
         playerManager.Init();
 
         camManager.Init();
-
-        bandRotator = FindObjectOfType<BandRotator>();
-        bandRotator.Init();
     }
 
     public void OnLevelSucceed()
@@ -81,8 +80,29 @@ public class GameManager : MonoSingleton<GameManager>
     {
         playerManager.DeInit();
 
-        ActionManager.UpdateMoney(50f);
+        ActionManager.UpdateMoney(0f);
         ActionManager.GameEnd?.Invoke(check);
 
+    }
+
+    private bool IsMobileDevice()
+    {
+        //Check if the device running this is a handheld
+        if (SystemInfo.deviceType == DeviceType.Handheld)
+        {
+            return false;
+        }
+
+        //Check if the device running this is a desktop
+        else if (SystemInfo.deviceType == DeviceType.Desktop)
+        {
+            return true;
+        }
+
+        //Check if the device running this is unknown
+        else
+        {
+            return false;
+        }
     }
 }

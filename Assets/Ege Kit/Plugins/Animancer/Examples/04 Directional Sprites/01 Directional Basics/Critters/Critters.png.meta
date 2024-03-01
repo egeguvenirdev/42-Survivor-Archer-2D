@@ -1850,8 +1850,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Chick-Walk-Down-2: 21300162
-      Chick-Walk-Up-1: 21300184
+      Chick-Walk-Right-3: 21300180
+      Slime-Walk-Up-2: 21300218
       Bunny-Walk-Down-4: 21300134
       Bunny-Walk-Right-2: 21300146
       Bunny-Walk-Up-3: 21300156
@@ -1908,12 +1908,12 @@ TextureImporter:
       Spider-Walk-Left-3: 21300236
       Chick-Walk-Down-4: 21300166
       Slime-Walk-Left-2: 21300202
+      Chick-Walk-Down-2: 21300162
       Slime-Walk-Right-2: 21300210
-      Slime-Walk-Right-3: 21300212
-      Slime-Walk-Up-2: 21300218
-      Spider-Walk-Down-1: 21300224
-      Chick-Walk-Right-3: 21300180
       Chick-Walk-Right-4: 21300182
+      Spider-Walk-Down-1: 21300224
+      Slime-Walk-Right-3: 21300212
+      Chick-Walk-Up-1: 21300184
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
