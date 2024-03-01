@@ -13,8 +13,6 @@ public class RunnerScript : MonoBehaviour
     [SerializeField] private PlayerSwerve playerSwerve;
 
     [Header("Path Settings")]
-    [SerializeField] private float distance = 0;
-    [SerializeField] private float startDistance = 0;
     [SerializeField] private float clampLocalX = 2f;
 
     [Header("Run Settings")]
@@ -25,9 +23,7 @@ public class RunnerScript : MonoBehaviour
     [SerializeField] private bool canFollow = true;
 
     private Vector3 oldPosition;
-    private bool canRun = false;
     private bool canSwerve = false;
-    private bool canLookAt = true;
 
     public float RunSpeed
     {
@@ -38,8 +34,6 @@ public class RunnerScript : MonoBehaviour
     {
         ActionManager.SwerveValue += PlayerSwipe_OnSwerve;
         ActionManager.Updater += OnUpdate;
-
-        distance = startDistance;
 
         StartToRun(true);
     }
@@ -63,21 +57,20 @@ public class RunnerScript : MonoBehaviour
         if (checkRun)
         {
             playerSwerve.Init();
-            canRun = true;
             canSwerve = true;
         }
         else
         {
             playerSwerve.DeInit();
-            canRun = false;
             canSwerve = false;
         }
     }
 
-    private void PlayerSwipe_OnSwerve(float direction)
+    private void PlayerSwipe_OnSwerve(Vector2 direction)
     {
         if (!canSwerve) return;
-        localMoverTarget.localPosition += Vector3.right * direction * localTargetSwipeSpeed * Time.deltaTime;
+        Vector2 swipeValue = direction * localTargetSwipeSpeed * Time.deltaTime;
+        localMoverTarget.localPosition += new Vector3(swipeValue.x, swipeValue.y, 0);
         ClampLocalPosition();
     }
 
@@ -90,27 +83,11 @@ public class RunnerScript : MonoBehaviour
 
     void FollowLocalMoverTarget(float deltaTime)
     {
-        /*//pathrunner
-        distance += runSpeed * deltaTime;
-        localMoverTarget.position = pathCreator.path.GetPointAtDistance(distance);
-        localMoverTarget.eulerAngles = pathCreator.path.GetRotationAtDistance(distance).eulerAngles + new Vector3(0f, 0f, 90f);*/
-
-        //classic forward runner
-        if (canRun) localMoverTarget.Translate(transform.forward * deltaTime * runSpeed);
-
-
         //follower character
         if (canFollow)
         {
             Vector3 direction = localMoverTarget.localPosition - oldPosition;
             model.transform.forward = Vector3.Lerp(model.transform.forward, direction, characterRotateLerpSpeed * deltaTime);
-        }
-
-        if (canLookAt)
-        {
-            //swipe the object
-            Vector3 nextPos = new Vector3(localMoverTarget.localPosition.x, model.localPosition.y, localMoverTarget.localPosition.z); ;
-            model.localPosition = Vector3.Lerp(model.localPosition, nextPos, characterSwipeLerpSpeed * deltaTime);
         }
     }
 

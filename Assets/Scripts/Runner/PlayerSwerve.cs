@@ -55,7 +55,7 @@ public class PlayerSwerve : MonoBehaviour
             deltaDir = dir - dirOld;
             dirOld = dir;
             //lastPos += (deltaDir.x * moveSpeed * Time.deltaTime);
-            ActionManager.SwerveValue?.Invoke(deltaDir.x * moveSpeed * deltaTime);
+            ActionManager.SwerveValue?.Invoke(deltaDir * moveSpeed * deltaTime);
         }
     }
 }

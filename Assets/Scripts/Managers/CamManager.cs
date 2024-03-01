@@ -12,7 +12,6 @@ public class CamManager : MonoBehaviour
     [Header("Cam Follow Settings")]
     [SerializeField] private Vector3 followOffset;
     [SerializeField] private float playerFollowSpeed = 0.125f;
-    [SerializeField] private float clampLocalX = 1.5f;
 
     [Header("Shake Settings")]
     [SerializeField] private MMCameraShaker camShaker;
@@ -42,20 +41,11 @@ public class CamManager : MonoBehaviour
         ActionManager.GetOrtograficScreenToWorldPoint -= OnGetOrtograficCam;
     }
 
-    private void Update()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            camShaker.ShakeCamera(shakeDuration, shakeAmplitude, shakeFrequency, shakeAmplitudeX, shakeAmplitudeY, shakeAmplitudeZ, unscaledTime);
-        }
-    }
-
     private void OnUpdate(float deltaTime)
     {
         if (player != null)
         {
             Vector3 targetPosition = player.position + followOffset;
-            targetPosition.x = Mathf.Clamp(targetPosition.x, -clampLocalX, clampLocalX);
             transform.position = Vector3.Lerp(transform.position, targetPosition, playerFollowSpeed * deltaTime);
         }
     }

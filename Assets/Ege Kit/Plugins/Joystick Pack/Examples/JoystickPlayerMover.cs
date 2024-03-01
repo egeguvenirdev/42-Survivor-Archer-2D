@@ -5,83 +5,40 @@ using UnityEngine;
 public class JoystickPlayerMover : MonoBehaviour
 {
     [Header("Movement Properties")]
-    private float bodySpeed = 5;
-    [SerializeField] private float minSpeed = 1;
-    [SerializeField] private float maxSpeed = 5;
-    [SerializeField] private float clampValueXneg = 4.8f;
+    [SerializeField] private float bodySpeed = 5;
     [SerializeField] private float clampValueXpos = 4.8f;
-    [SerializeField] private float clampValueZneg = 4.8f;
-    [SerializeField] private float clampValueZpos = 4.8f;
-    [SerializeField] private int gap = 5;
-    [SerializeField] private Transform localMover;
+    [SerializeField] private float clampValueYpos = 4.8f;
     [SerializeField] private Transform character;
 
-    private List<Vector3> PositionsHistory = new List<Vector3>();
-
     private VariableJoystick variableJoystick;
-    private bool canMove;
-    private Transform targetPos;
 
     public void Init()
     {
         variableJoystick = FindObjectOfType<VariableJoystick>();
-        bodySpeed = maxSpeed;
-        canMove = true;
+        ActionManager.Updater += OnUpdate;
     }
 
     public void DeInit()
     {
-        bodySpeed = 0;
-        canMove = false;
+        ActionManager.Updater -= OnUpdate;
     }
 
-    public void ReduceSpeed()
+    private void OnUpdate(float deltaTime)
     {
-        bodySpeed = minSpeed;
-    }
-
-    public void IncreaseSpeed()
-    {
-        bodySpeed = maxSpeed;
-    }
-
-
-    private void Update()
-    {
-        if (!canMove) return;
-
-        //targetPos = DetectEnemies();
-
-        if (targetPos != null) character.LookAt(targetPos);
-
         if (Input.GetMouseButton(0) && variableJoystick.Direction != Vector2.zero)
         {
-            OnPlayerMove();
-            //animController.PlayRunAnimation(1);
-            //lookat
-            float angle = Vector3.Angle(new Vector3(variableJoystick.Horizontal, 0, variableJoystick.Vertical), Vector3.forward);
-            if (variableJoystick.Horizontal < 0) angle *= -1;
-            localMover.rotation = Quaternion.Euler(0f, angle, 0f);
-            localMover.localPosition += localMover.forward * bodySpeed * Time.deltaTime;
+            character.localPosition += new Vector3(variableJoystick.Horizontal, variableJoystick.Vertical, 0) * bodySpeed * deltaTime;
+            Debug.Log("" + bodySpeed + " " + variableJoystick.Vertical);
 
-            Vector3 pos = localMover.localPosition;
+            Vector3 pos = character.localPosition;
 
-            pos.x = Mathf.Clamp(pos.x, clampValueXneg, clampValueXpos);
-            pos.y = 0;
-            pos.z = Mathf.Clamp(pos.z, clampValueZneg, clampValueZpos);
+            pos.x = Mathf.Clamp(pos.x, -clampValueXpos, clampValueXpos);
+            pos.z = 0;
+            pos.y = Mathf.Clamp(pos.y, -clampValueYpos, clampValueYpos);
 
-            localMover.localPosition = pos;
+            character.localPosition = pos;
             return;
         }
         //animController.PlayIdleAnimation(1);
-    }
-
-    private void OnPlayerMove()
-    {
-        PositionsHistory.Insert(0, localMover.position);
-        Vector3 point = PositionsHistory[Mathf.Clamp(1 * gap, 0, PositionsHistory.Count - 1)];
-        Vector3 moveDirection = point - character.transform.position;
-        character.position += moveDirection * bodySpeed * Time.deltaTime;
-        //character.LookAt(localMover);
     }
 }

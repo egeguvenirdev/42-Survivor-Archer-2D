@@ -6,7 +6,7 @@ using DG.Tweening;
 public class PlayerManager : MonoBehaviour
 {
     [Header("Components")]
-    [SerializeField] private RunnerScript runnerScript;
+    [SerializeField] private JoystickPlayerMover runnerScript;
     [SerializeField] private Transform characterTransform;
 
     private GameManager gameManager;
