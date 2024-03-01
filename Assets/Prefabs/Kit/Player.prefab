@@ -236,6 +236,9 @@ MonoBehaviour:
   clampValueXpos: 45
   clampValueYpos: 45
   character: {fileID: 7334631500952762661}
+  animancer: {fileID: 1440037956}
+  run: {fileID: 7400000, guid: 3ecb1b6efbb23eb40aac6a82a8a9eab3, type: 2}
+  idle: {fileID: 7400000, guid: c3efa3adc9a1c9f438274bbd8127bc3e, type: 2}
 --- !u!114 &182378436109458471
 MonoBehaviour:
   m_ObjectHideFlags: 0
