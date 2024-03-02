@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 817454a6615512d49b08ab9c19858d2b, type: 3}
+  m_Name: Enemy Wave Settings
+  m_EditorClassIdentifier: 
+  wavePrefs:
+    enemyPrefab: 0100000001000000
+    enemyCountsByLevel: 0200000005000000
+    enemyCountPerWave: 10
+    coolDown: 10
+    delay: 1
+    radius: 3

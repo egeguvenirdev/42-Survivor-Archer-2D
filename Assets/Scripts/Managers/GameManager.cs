@@ -17,6 +17,7 @@ public class GameManager : MonoSingleton<GameManager>
     private UIManager uIManager;
     private ObjectPooler pooler;
     private InputManager inputManager;
+    private EnemySpawner enemySpawner;
 
     void Start()
     {
@@ -60,6 +61,9 @@ public class GameManager : MonoSingleton<GameManager>
         playerManager = FindObjectOfType<PlayerManager>();
         playerManager.Init();
 
+        enemySpawner = FindObjectOfType<EnemySpawner>();
+        enemySpawner.Init();
+
         camManager.Init();
     }
 
@@ -79,6 +83,7 @@ public class GameManager : MonoSingleton<GameManager>
     public void FinishTheGame(bool check)
     {
         playerManager.DeInit();
+        enemySpawner.DeInit();
 
         ActionManager.UpdateMoney(0f);
         ActionManager.GameEnd?.Invoke(check);
