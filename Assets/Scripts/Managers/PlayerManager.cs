@@ -7,6 +7,7 @@ public class PlayerManager : MonoBehaviour
 {
     [Header("Components")]
     [SerializeField] private JoystickPlayerMover runnerScript;
+    [SerializeField] private Bow bow;
     [SerializeField] private Transform characterTransform;
 
     private GameManager gameManager;
@@ -24,11 +25,13 @@ public class PlayerManager : MonoBehaviour
         gameManager = GameManager.Instance;
         moneyManager = MoneyManager.Instance;
         runnerScript.Init();
+        bow.Init();
     }
 
     public void DeInit()
     {
         runnerScript.DeInit();
+        bow.DeInit();
     }
 
     #region Upgrade

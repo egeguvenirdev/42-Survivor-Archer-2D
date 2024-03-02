@@ -12,6 +12,8 @@ public class UIManager : MonoSingleton<UIManager>
     [SerializeField] private UpgradeCard[] upgradeButtons;
     [SerializeField] private GameObject[] InGameUis;
     [SerializeField] private ButtonBase upgradePanel;
+    [SerializeField] private VariableJoystick moveJoystick;
+    [SerializeField] private VariableJoystick bowJoystick;
 
     [Header("Level & Progress Props")]
     [SerializeField] private TMP_Text currentLV;
@@ -29,6 +31,16 @@ public class UIManager : MonoSingleton<UIManager>
     public Transform GetMoneyImageTranform
     {
         get => moneyImage.transform;
+    }
+
+    public VariableJoystick GetMoveJoystick
+    {
+        get => moveJoystick;
+    }
+
+    public VariableJoystick GetBowJoystick
+    {
+        get => bowJoystick;
     }
 
     public void Init(bool mobileDeviceCheck)

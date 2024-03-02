@@ -50,7 +50,6 @@ MonoBehaviour:
   ortograficCam: {fileID: 0}
   followOffset: {x: 0, y: 0, z: 0}
   playerFollowSpeed: 3
-  clampLocalX: 1.5
   camShaker: {fileID: 6011345223480840423}
   shakeDuration: 0.1
   shakeAmplitude: 1
