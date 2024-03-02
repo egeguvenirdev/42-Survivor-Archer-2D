@@ -18,6 +18,7 @@ public enum EnemyType
 public enum PoolObjectType
 {
     PlayerThrowable,
+    Enemy,
     EnemyThrowable,
     SlideText
 }

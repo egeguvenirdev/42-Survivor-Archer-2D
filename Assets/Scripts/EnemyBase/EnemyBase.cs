@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public abstract class EnemyBase : MonoBehaviour
+public abstract class EnemyBase : PoolableObjectBase, IDamageable
 {
     [Header("Properties")]
     [SerializeField] protected EnemyInfos enemyInfos;
@@ -11,7 +11,6 @@ public abstract class EnemyBase : MonoBehaviour
 
     private float maxHealth;
     protected float range;
-    private float speed;
     private float attackDamage;
     private float currentHealth;
 
@@ -30,7 +29,7 @@ public abstract class EnemyBase : MonoBehaviour
     public float setHealth
     {
         get => currentHealth;
-        set
+        private set
         {
             value = Mathf.Clamp(value, 0, float.MaxValue);
             //hitParticle.Play();
@@ -48,7 +47,7 @@ public abstract class EnemyBase : MonoBehaviour
         vibration = VibrationManager.Instance;
     }
 
-    public void Init()
+    public override void Init()
     {
         agent.isStopped = false;
         canMove = true;
@@ -82,8 +81,13 @@ public abstract class EnemyBase : MonoBehaviour
         EnemyInfos.CharacterPref currentLevel = enemyInfos.GetCharacterPrefs;
 
         maxHealth = currentLevel.maxHealth;
-        speed = currentLevel.speed;
+        agent.speed = currentLevel.speed;
         range = currentLevel.range;
         attackDamage = currentLevel.attackDamge;
+    }
+
+    public void TakeDamage(float damage)
+    {
+        setHealth = damage;
     }
 }

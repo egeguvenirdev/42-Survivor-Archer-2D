@@ -7,5 +7,5 @@ public abstract class PoolableObjectBase : MonoBehaviour
     public PoolObjectType ObjectType { get => objectType; private set => objectType = value; }
     [SerializeField] private PoolObjectType objectType;
 
-    public abstract void Init(float speed);
+    public abstract void Init();
 }

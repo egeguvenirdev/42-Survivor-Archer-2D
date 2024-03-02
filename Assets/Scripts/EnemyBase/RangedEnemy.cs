@@ -48,9 +48,10 @@ public class RangedEnemy : EnemyBase
 
     private void Fire()
     {
-        PoolableObjectBase throwable = pooler.GetPooledObjectWithType(PoolObjectType.EnemyThrowable);
+        PoolableObjectBase throwable = pooler.GetPooledObjectWithType(PoolObjectType.PlayerThrowable);
         throwable.transform.position = transform.position;
+        throwable.transform.rotation = Quaternion.Euler(0, 0, Vector3.Angle(transform.position, playerPos));
         throwable.gameObject.SetActive(true);
-        throwable.Init(Vector3.Angle(transform.position,playerPos));
+        throwable.Init();
     }
 }

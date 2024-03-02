@@ -10,14 +10,12 @@ public class PlayerThroable : PoolableObjectBase
     private float remainingTime;
     private bool canMove;
 
-    public override void Init(float rotation)
+    public override void Init()
     {
         col.enabled = true;
         canMove = true;
         remainingTime = lifeTime;
         ActionManager.Updater += OnUpdate;
-
-        transform.rotation = Quaternion.Euler(0, 0, rotation);
     }
 
     public void DeInit()

@@ -615,7 +615,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyInfos: {fileID: 11400000, guid: 4f65aba11e78f7843a11cf4a3efbda49, type: 2}
-  animancer: {fileID: 0}
+  animancer: {fileID: 733203290}
   idleAnim: {fileID: 7400000, guid: 0ece4737e1d7ee546bd5c3f9b2b728f8, type: 2}
   runAnim: {fileID: 7400000, guid: 9344a5f1bf9674d4a95ae75f5534cb8b, type: 2}
   agent: {fileID: 0}

@@ -34,7 +34,7 @@ public class Bow : MonoBehaviour
         if (bowJoystick.Direction != Vector2.zero)
         {
             float angle = Vector3.Angle(new Vector3(bowJoystick.Horizontal, 0, bowJoystick.Vertical), Vector3.forward);
-            Debug.Log(bowJoystick.Horizontal);
+
             if (bowJoystick.Horizontal >= 0) angle *= -1f;
             aimHolder.rotation = Quaternion.Euler(0f, 0f, angle);
 
@@ -42,8 +42,9 @@ public class Bow : MonoBehaviour
             {
                 PoolableObjectBase throwable = pooler.GetPooledObjectWithType(PoolObjectType.PlayerThrowable);
                 throwable.transform.position = transform.position;
+                throwable.transform.rotation = Quaternion.Euler(0, 0, angle);
                 throwable.gameObject.SetActive(true);
-                throwable.Init(angle);
+                throwable.Init();
                 cooldownTimer = shootingCooldown;
             }
             else
