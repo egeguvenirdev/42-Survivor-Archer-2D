@@ -4,8 +4,7 @@ using UnityEngine;
 using DG.Tweening;
 
 public class MeleeEnemy : EnemyBase
-{
-    [SerializeField] private float walkRange = 1;
+{ 
     [SerializeField] private string[] gemNames;
     private Vector3 destination;
     private ObjectPooler objectPooler;
@@ -21,13 +20,13 @@ public class MeleeEnemy : EnemyBase
             //Debug.Log(agent.remainingDistance);
         }
 
-        if (agent.remainingDistance > 0 && agent.remainingDistance < walkRange)
+        if (agent.remainingDistance > 0 && agent.remainingDistance < range)
         {
             if (canMove) transform.LookAt(destination);
             if (canMove)
             {
                 isRunning = false;
-                _animancer.PlayAnimation("Attack");
+                animancer.PlayAnimation("Attack");
                 StartCoroutine(HitRoutine());
             }
         }
@@ -35,7 +34,7 @@ public class MeleeEnemy : EnemyBase
         {
             if (canMove && !isRunning)
             {
-                _animancer.PlayAnimation("Run");
+                animancer.PlayAnimation("Run");
                 StopAllCoroutines();
                 isRunning = true;
             }
@@ -49,22 +48,8 @@ public class MeleeEnemy : EnemyBase
         if (objectPooler == null) objectPooler = ObjectPooler.Instance;
         Fire();
         yield return CoroutineManager.GetTime(0.833f - (0.833f * 0.54f), 30f);
-        _animancer.Stop();
+        animancer.Stop();
         canMove = true;
-    }
-
-    public override void TakeDamage(float hitAmount)
-    {
-        base.TakeDamage(hitAmount);
-        PlayParticle("BossHitParticle");
-    }
-
-    protected override void Die()
-    {
-        PlayParticle("HitParticle");
-        DropExpDiamond();
-        base.Die();
-        gameObject.SetActive(false);
     }
 
     private void PlayParticle(string particleName)

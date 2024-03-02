@@ -1,33 +1,31 @@
-//using NaughtyAttributes;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyBase : MonoBehaviour
+public abstract class EnemyBase : MonoBehaviour
 {
     [Header("Properties")]
-    [SerializeField] protected int level = 1;
     [SerializeField] protected EnemyInfos enemyInfos;
-    [SerializeField] public EnemyType enemyType;
     //[SerializeField] [EnumFlags] private DropType dropType;
 
-    protected float maxHealth;
+    private float maxHealth;
     protected float range;
-    protected float speed;
-    protected float attackDamage;
-    protected float currentHealth;
+    private float speed;
+    private float attackDamage;
+    private float currentHealth;
 
     [Header("Animation")]
-    [SerializeField] protected SimpleAnimancer _animancer;
-    [SerializeField] private AnimationClip[] dieClips;
-
+    [SerializeField] protected SimpleAnimancer animancer;
+    [SerializeField] protected AnimationClip idleAnim;
+    [SerializeField] protected AnimationClip runAnim;
     [SerializeField] protected NavMeshAgent agent;
-    [SerializeField] protected PlayerManager playerManager;
 
     protected bool canMove = true;
     protected bool isRunning = false;
-    protected bool isAlive = false;
+
+    protected ObjectPooler pooler;
+    protected VibrationManager vibration;
 
     public float setHealth
     {
@@ -35,112 +33,57 @@ public class EnemyBase : MonoBehaviour
         set
         {
             value = Mathf.Clamp(value, 0, float.MaxValue);
+            //hitParticle.Play();
             currentHealth -= value;
-            if (currentHealth <= 0) Die();
+            SlideText hitText = pooler.GetPooledText();
+            hitText.SetTheText("", (int)value, Color.red, null, transform.position);
+            vibration.SoftVibration();
+            if (currentHealth <= 0) DeInit();
         }
     }
 
-    protected void Initialized()
+    private void Start()
     {
-        playerManager = FindObjectOfType<PlayerManager>();
-        //SetProperties(playerManager.PlayerLevel);
+        pooler = ObjectPooler.Instance;
+        vibration = VibrationManager.Instance;
+    }
+
+    public void Init()
+    {
+        agent.isStopped = false;
+        canMove = true;
+        SetProperties();
 
         ActionManager.AiUpdater += MoveTowardsPlayer;
         ActionManager.GameEnd += OnGameEnd;
-
-        ResHealth();
-        //
     }
 
-    protected virtual void MoveTowardsPlayer(Vector3 player)
+    public void DeInit()
     {
-
-    }
-
-    public virtual void TakeDamage(float hitAmount)
-    {
-        setHealth = hitAmount;
-        PlayDamageText(hitAmount);
-    }
-
-    public void Freeze(float time)
-    {
-        StartCoroutine(Frozen(time));
-    }
-
-    private IEnumerator Frozen(float time)
-    {
-        canMove = false;
         agent.isStopped = true;
-        yield return new WaitForSeconds(time);
-        agent.isStopped = false;
-        canMove = true;
+        canMove = false;
+        gameObject.SetActive(false);
+
+        ActionManager.AiUpdater -= MoveTowardsPlayer;
+        ActionManager.GameEnd -= OnGameEnd;
     }
 
-    protected void PlayDamageText(float hitAmount)
-    {
-        if (hitAmount <= 0) return;
-    }
+    protected abstract void MoveTowardsPlayer(Vector3 player);
 
     private void OnGameEnd(bool playerWin)
     {
-        if (playerWin)
-        {
-            OnPlayerWin();
-            return;
-        }
-        OnPlayerLose();
+        StopAllCoroutines();
+        animancer.PlayAnimation(idleAnim);
+        agent.isStopped = true;
     }
 
-    private void OnPlayerWin()
+    private void SetProperties()
     {
-        if (isAlive)
-        {
-            _animancer.PlayAnimation("Die");
-            agent.isStopped = true;
-        }
-    }
-
-    private void OnPlayerLose()
-    {
-        if (isAlive)
-        {
-            _animancer.PlayAnimation("Idle");
-            agent.isStopped = true;
-        }
-    }
-
-    protected virtual void Die()
-    {
-        ActionManager.AiUpdater -= MoveTowardsPlayer;
-        ActionManager.GameEnd -= OnGameEnd;
-
-        ResHealth();
-        isAlive = false;
-
-        //if (dropType == DropType.Nothing) return;
-    }
-
-    private void SetProperties(int playerLevel)
-    {
-        /*if (playerLevel > enemyInfos.GetCharacterPrefs.Length) playerLevel = enemyInfos.GetCharacterPrefs.Length;
-
-        EnemyInfos.CharacterPref currentLevel = enemyInfos.GetCharacterPrefs[playerLevel - 1];
+        EnemyInfos.CharacterPref currentLevel = enemyInfos.GetCharacterPrefs;
 
         maxHealth = currentLevel.maxHealth;
         speed = currentLevel.speed;
         range = currentLevel.range;
-        attackDamage = currentLevel.attackDamge;*/
-
-
-        var enemyConfig = EnemyConfigUtility.GetEnemyConfigByLevel((byte)level);
-        maxHealth = enemyConfig.Health;
-        attackDamage = enemyConfig.Power;
-    }
-
-    private void ResHealth()
-    {
-        isAlive = true;
-        currentHealth = maxHealth;
+        attackDamage = currentLevel.attackDamge;
     }
 }

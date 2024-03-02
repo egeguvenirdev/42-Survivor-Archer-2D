@@ -6,9 +6,9 @@ using UnityEngine;
 
 public class EnemyInfos : ScriptableObject
 {
-    [SerializeField] private CharacterPref[] characterPrefs;
+    [SerializeField] private CharacterPref characterPrefs;
 
-    public CharacterPref[] GetCharacterPrefs { get => characterPrefs; set => characterPrefs = value; }
+    public CharacterPref GetCharacterPrefs { get => characterPrefs; set => characterPrefs = value; }
 
     [System.Serializable]
     public class CharacterPref
