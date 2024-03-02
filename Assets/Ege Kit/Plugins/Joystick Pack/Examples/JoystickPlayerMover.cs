@@ -35,15 +35,16 @@ public class JoystickPlayerMover : MonoBehaviour
         if (Input.GetMouseButton(0) && moveJoystick.Direction != Vector2.zero)
         {
             character.localPosition += new Vector3(moveJoystick.Horizontal, moveJoystick.Vertical, 0) * bodySpeed * deltaTime;
-            //Debug.Log("" + bodySpeed + " " + moveJoystick.Vertical);
 
             Vector3 pos = character.localPosition;
 
             pos.x = Mathf.Clamp(pos.x, -clampValueXpos, clampValueXpos);
             pos.z = 0;
             pos.y = Mathf.Clamp(pos.y, -clampValueYpos, clampValueYpos);
+
             if (moveJoystick.Horizontal < 0) character.localScale = new Vector3(-1, 1, 1);
             else character.localScale = Vector3.one;
+
             character.localPosition = pos;
             return;
         }
