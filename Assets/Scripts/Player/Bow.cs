@@ -5,6 +5,8 @@ using UnityEngine;
 public class Bow : MonoBehaviour
 {
     [SerializeField] private float shootingCooldown = 1f;
+    [SerializeField] private Transform aimHolder;
+    [SerializeField] private GameObject aim;
     private float cooldownTimer = 0f;
 
     private VariableJoystick bowJoystick;
@@ -13,12 +15,14 @@ public class Bow : MonoBehaviour
     {
         bowJoystick = UIManager.Instance.GetBowJoystick;
         ActionManager.Updater += OnUpdate;
+        ActionManager.FireInput += OnFireInput;
         cooldownTimer = 0f;
     }
 
     public void DeInit()
     {
         ActionManager.Updater -= OnUpdate;
+        ActionManager.FireInput -= OnFireInput;
     }
 
     private void OnUpdate(float deltaTime)
@@ -27,6 +31,11 @@ public class Bow : MonoBehaviour
 
         if (bowJoystick.Direction != Vector2.zero)
         {
+            float angle = Vector3.Angle(new Vector3(bowJoystick.Horizontal, 0, bowJoystick.Vertical), Vector3.forward);
+            Debug.Log(bowJoystick.Horizontal);
+            if (bowJoystick.Horizontal >= 0) angle *= -1f;
+            aimHolder.rotation = Quaternion.Euler(0f, 0f, angle);
+
             if (cooldownTimer <= 0)
             {
                 cooldownTimer = shootingCooldown;
@@ -34,12 +43,18 @@ public class Bow : MonoBehaviour
             else
             {
                 cooldownTimer -= deltaTime;
-                Debug.Log(cooldownTimer);
+                //Debug.Log(cooldownTimer);
             }
         }
         else
         {
             cooldownTimer = 0f;
         }
+    }
+
+    private void OnFireInput(bool check)
+    {
+        if (check) aim.SetActive(true);
+        else aim.SetActive(false);
     }
 }

@@ -9,13 +9,12 @@ public class VariableJoystick : Joystick
 
     [SerializeField] private float moveThreshold = 1;
     [SerializeField] private JoystickType joystickType = JoystickType.Fixed;
-
     private Vector2 fixedPosition = Vector2.zero;
 
     public void SetMode(JoystickType joystickType)
     {
         this.joystickType = joystickType;
-        if(joystickType == JoystickType.Fixed)
+        if (joystickType == JoystickType.Fixed)
         {
             background.anchoredPosition = fixedPosition;
             background.gameObject.SetActive(true);
@@ -33,19 +32,22 @@ public class VariableJoystick : Joystick
 
     public override void OnPointerDown(PointerEventData eventData)
     {
-        if(joystickType != JoystickType.Fixed)
+        if (joystickType != JoystickType.Fixed)
         {
             background.anchoredPosition = ScreenPointToAnchoredPosition(eventData.position);
             background.gameObject.SetActive(true);
         }
+        if (!isMoveJoystick) ActionManager.FireInput?.Invoke(true);
+        else ActionManager.MoveInput?.Invoke(true);
         base.OnPointerDown(eventData);
     }
 
     public override void OnPointerUp(PointerEventData eventData)
     {
-        if(joystickType != JoystickType.Fixed)
+        if (joystickType != JoystickType.Fixed)
             background.gameObject.SetActive(false);
-
+        if (!isMoveJoystick) ActionManager.FireInput?.Invoke(false);
+        else ActionManager.MoveInput?.Invoke(false);
         base.OnPointerUp(eventData);
     }
 

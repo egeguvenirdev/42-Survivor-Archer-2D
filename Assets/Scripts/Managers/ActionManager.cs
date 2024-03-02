@@ -12,6 +12,8 @@ public static class ActionManager
     public static Action<float> Updater { get; set; }
     public static Action<Vector3> AiUpdater { get; set; }
     public static Action<KeyCode> InputType { get; set; }
+    public static Action<bool> FireInput { get; set; }
+    public static Action<bool> MoveInput { get; set; }
 
     //MoneyActions
     public static Action<float> UpdateMoney { get; set; }

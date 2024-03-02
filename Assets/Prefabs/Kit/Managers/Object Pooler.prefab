@@ -45,5 +45,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemsToPool: []
-  enemyiesToPool: []
+  textsToPool: []
   pooledObjectHolder: {fileID: 4191595481970433956}

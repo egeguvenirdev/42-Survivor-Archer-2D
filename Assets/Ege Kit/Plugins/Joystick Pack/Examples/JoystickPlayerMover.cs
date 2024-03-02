@@ -21,20 +21,17 @@ public class JoystickPlayerMover : MonoBehaviour
     {
         moveJoystick = UIManager.Instance.GetMoveJoystick;
         ActionManager.Updater += OnUpdate;
+        ActionManager.MoveInput += OnMoveInput;
     }
 
     public void DeInit()
     {
         ActionManager.Updater -= OnUpdate;
+        ActionManager.MoveInput -= OnMoveInput;
     }
 
     private void OnUpdate(float deltaTime)
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            PlayAnimation(run);
-        }
-
         if (Input.GetMouseButton(0) && moveJoystick.Direction != Vector2.zero)
         {
             character.localPosition += new Vector3(moveJoystick.Horizontal, moveJoystick.Vertical, 0) * bodySpeed * deltaTime;
@@ -50,13 +47,14 @@ public class JoystickPlayerMover : MonoBehaviour
             character.localPosition = pos;
             return;
         }
-        //animController.PlayIdleAnimation(1);
-
-        if (Input.GetMouseButtonUp(0))
-        {
-            PlayAnimation(idle);
-        }
     }
+
+    private void OnMoveInput(bool check)
+    {
+        if (check) PlayAnimation(run);
+        else PlayAnimation(idle);
+    }
+
 
     public void PlayAnimation(AnimationClip anim)
     {

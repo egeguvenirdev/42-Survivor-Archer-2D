@@ -590,17 +590,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 9104145522722065282, guid: 5206d881e2879494eaf6c93e06d9c726, type: 3}
   m_PrefabInstance: {fileID: 1649810643}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1801519937 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 260907309298075945, guid: d356f5de8c400e84dbba102c8b8eaed8, type: 3}
-  m_PrefabInstance: {fileID: 2067628260}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 42844a4fccbd54746b90cade4ff70f73, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &2067628260
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -608,22 +597,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 240723975, guid: d356f5de8c400e84dbba102c8b8eaed8, type: 3}
-      propertyPath: bowJoystick
-      value: 
-      objectReference: {fileID: 2067628261}
-    - target: {fileID: 240723975, guid: d356f5de8c400e84dbba102c8b8eaed8, type: 3}
-      propertyPath: moveJoystick
-      value: 
-      objectReference: {fileID: 1801519937}
-    - target: {fileID: 260907309298075947, guid: d356f5de8c400e84dbba102c8b8eaed8, type: 3}
-      propertyPath: m_Name
-      value: Move Joystick
-      objectReference: {fileID: 0}
-    - target: {fileID: 976665387579711855, guid: d356f5de8c400e84dbba102c8b8eaed8, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -122.3999
-      objectReference: {fileID: 0}
     - target: {fileID: 8286306661346076680, guid: d356f5de8c400e84dbba102c8b8eaed8, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -714,17 +687,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d356f5de8c400e84dbba102c8b8eaed8, type: 3}
---- !u!114 &2067628261 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 9073219437621904074, guid: d356f5de8c400e84dbba102c8b8eaed8, type: 3}
-  m_PrefabInstance: {fileID: 2067628260}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 42844a4fccbd54746b90cade4ff70f73, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &2110089028560563104
 PrefabInstance:
   m_ObjectHideFlags: 0
