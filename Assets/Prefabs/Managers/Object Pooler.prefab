@@ -44,6 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9365f5f5207d4084aa9955c1754778e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemsToPool: []
+  itemsToPool:
+  - amountToPool: 10
+    objectToPool: {fileID: 6139176402853465222, guid: 0c79e3550330c0141b9f402a65aa9057, type: 3}
+    shouldExpand: 1
   textsToPool: []
   pooledObjectHolder: {fileID: 4191595481970433956}

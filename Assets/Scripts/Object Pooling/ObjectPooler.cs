@@ -9,19 +9,19 @@ public class ObjectPooler : MonoSingleton<ObjectPooler>
     [SerializeField] private List<ObjectPooledItem> textsToPool;
     [SerializeField] private GameObject pooledObjectHolder;
 
-    private List<GameObject> pooledObjects;
+    private List<PoolableObjectBase> pooledObjects;
     private List<SlideText> pooledText;
 
     private void Awake()
     {
-        pooledObjects = new List<GameObject>();
+        pooledObjects = new List<PoolableObjectBase>();
         foreach (ObjectPooledItem item in itemsToPool)
         {
             for (int i = 0; i < item.amountToPool; i++)
             {
-                GameObject obj = (GameObject)Instantiate(item.objectToPool);
+                PoolableObjectBase obj = Instantiate(item.objectToPool).GetComponent<PoolableObjectBase>();
                 obj.transform.SetParent(pooledObjectHolder.transform);
-                obj.SetActive(false);
+                obj.gameObject.SetActive(false);
                 pooledObjects.Add(obj);
             }
         }
@@ -52,11 +52,11 @@ public class ObjectPooler : MonoSingleton<ObjectPooler>
         }
     }
 
-    public GameObject GetPooledObjectWithTag(string tag)
+    public PoolableObjectBase GetPooledObjectWithType(PoolObjectType refType)
     {
         for (int i = pooledObjects.Count - 1; i > -1; i--)
         {
-            if (!pooledObjects[i].activeInHierarchy && pooledObjects[i].tag == tag)
+            if (!pooledObjects[i].gameObject.activeInHierarchy && pooledObjects[i].ObjectType == refType)
             {
                 return pooledObjects[i];
             }
@@ -68,8 +68,8 @@ public class ObjectPooler : MonoSingleton<ObjectPooler>
             {
                 if (item.shouldExpand)
                 {
-                    GameObject obj = (GameObject)Instantiate(item.objectToPool);
-                    obj.SetActive(false);
+                    PoolableObjectBase obj = Instantiate(item.objectToPool).GetComponent<PoolableObjectBase>();
+                    obj.gameObject.SetActive(false);
                     pooledObjects.Add(obj);
                     obj.transform.SetParent(pooledObjectHolder.transform);
                     return obj;

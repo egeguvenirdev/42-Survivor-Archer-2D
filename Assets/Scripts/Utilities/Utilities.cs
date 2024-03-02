@@ -15,6 +15,13 @@ public enum EnemyType
     Range
 }
 
+public enum PoolObjectType
+{
+    PlayerThrowable,
+    EnemyThrowable,
+    SlideText
+}
+
 [System.Flags]
 public enum DropType : int
 {

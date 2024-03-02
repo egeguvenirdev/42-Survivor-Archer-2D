@@ -69,17 +69,11 @@ public class MeleeEnemy : EnemyBase
 
     private void PlayParticle(string particleName)
     {
-        var particle = ObjectPooler.Instance.GetPooledObjectWithTag(particleName);
-        Vector3 particlePos = new Vector3(transform.position.x, 0.25f, transform.position.z);
-        particle.transform.position = particlePos;
-        particle.transform.rotation = Quaternion.identity;
-        particle.SetActive(true);
-        particle.GetComponent<ParticleSystem>().Play();
     }
 
     private void DropExpDiamond()
     {
-        GameObject diamond = ObjectPooler.Instance.GetPooledObjectWithTag(gemNames[Random.Range(0, gemNames.Length)]);
+        /*GameObject diamond = ObjectPooler.Instance.GetPooledObjectWithTag(gemNames[Random.Range(0, gemNames.Length)]);
         diamond.transform.position = transform.position;
         diamond.transform.rotation = Quaternion.identity;
         diamond.SetActive(true);
@@ -87,7 +81,7 @@ public class MeleeEnemy : EnemyBase
         diamond.transform.DOJump(new Vector3(diamond.transform.position.x, 0, diamond.transform.position.z), 2, 1, 0.3f).OnComplete(() =>
         {
             diamond.GetComponent<Collider>().enabled = true;
-        });
+        });*/
     }
 
     private void Fire()

@@ -10,10 +10,12 @@ public class Bow : MonoBehaviour
     private float cooldownTimer = 0f;
 
     private VariableJoystick bowJoystick;
+    private ObjectPooler pooler;
 
     public void Init()
     {
         bowJoystick = UIManager.Instance.GetBowJoystick;
+        pooler = ObjectPooler.Instance;
         ActionManager.Updater += OnUpdate;
         ActionManager.FireInput += OnFireInput;
         cooldownTimer = 0f;
@@ -38,6 +40,10 @@ public class Bow : MonoBehaviour
 
             if (cooldownTimer <= 0)
             {
+                PoolableObjectBase throwable = pooler.GetPooledObjectWithType(PoolObjectType.PlayerThrowable);
+                throwable.transform.position = transform.position;
+                throwable.gameObject.SetActive(true);
+                throwable.Init(angle);
                 cooldownTimer = shootingCooldown;
             }
             else
