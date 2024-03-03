@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Timer : MonoBehaviour
 {
-    [SerializeField] private float timeRemaining = 300f;
+    [SerializeField] private float elapsedTime = 0;
     private bool timerIsRunning = false;
     private UIManager uIManager;
     private GameManager gameManager;
@@ -25,18 +25,8 @@ public class Timer : MonoBehaviour
     {
         if (timerIsRunning)
         {
-            if (timeRemaining > 0)
-            {
-                timeRemaining -= Time.deltaTime;
-                DisplayTime(timeRemaining);
-            }
-            else
-            {
-                Debug.Log("Time has run out!");
-                timeRemaining = 0;
-                timerIsRunning = false;
-                //gameManager.FinishTheGame(true); do the things here when the time expries
-            }
+            elapsedTime += Time.deltaTime;
+            DisplayTime(elapsedTime);
         }
     }
     void DisplayTime(float timeToDisplay)

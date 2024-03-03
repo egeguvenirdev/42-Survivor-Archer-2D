@@ -32,15 +32,14 @@ public class EnemySpawner : MonoBehaviour
         SetProperties();
         FillTheList();
         StartCoroutine(InstantiateEnemies());
-
-        //surviveTimer.Init();
+        surviveTimer.Init();
     }
 
     public void DeInit()
     {
         ActionManager.AiUpdater -= UpdatePlayerPos;
         StopAllCoroutines();
-        //surviveTimer.DeInit();
+        surviveTimer.DeInit();
     }
 
     private void UpdatePlayerPos(Vector3 PlayerPos)

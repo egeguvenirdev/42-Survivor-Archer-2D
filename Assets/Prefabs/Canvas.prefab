@@ -4918,6 +4918,7 @@ MonoBehaviour:
   InGameUis:
   - {fileID: 260907309298075947}
   - {fileID: 9073219437621904072}
+  - {fileID: 5275518068099170964}
   upgradePanel: {fileID: 3380426386670466637}
   moveJoystick: {fileID: 260907309298075945}
   bowJoystick: {fileID: 9073219437621904074}
