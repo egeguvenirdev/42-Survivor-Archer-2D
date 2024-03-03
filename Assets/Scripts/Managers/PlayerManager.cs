@@ -3,17 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
-public class PlayerManager : MonoBehaviour
+public class PlayerManager : MonoBehaviour, IDamageable
 {
     [Header("Components")]
     [SerializeField] private JoystickPlayerMover runnerScript;
     [SerializeField] private Bow bow;
     [SerializeField] private Transform characterTransform;
 
-    private GameManager gameManager;
-    private MoneyManager moneyManager;
+    [Header("Props")]
+    [SerializeField] private float maxHp;
+    private float currentHealth;
 
-    Sequence sequence;
+    private GameManager gameManager;
+    private VibrationManager vibration;
+    private ObjectPooler pooler;
 
     public Transform GetCharacterTransform
     {
@@ -23,15 +26,32 @@ public class PlayerManager : MonoBehaviour
     public void Init()
     {
         gameManager = GameManager.Instance;
-        moneyManager = MoneyManager.Instance;
+        vibration = VibrationManager.Instance;
+        pooler = ObjectPooler.Instance;
         runnerScript.Init();
         bow.Init();
+
+        ActionManager.PlayerDamage += TakeDamage;
     }
 
     public void DeInit()
     {
         runnerScript.DeInit();
         bow.DeInit();
+
+        ActionManager.PlayerDamage -= TakeDamage;
+    }
+
+    public void TakeDamage(float damage)
+    {
+        damage = Mathf.Clamp(damage, 0, float.MaxValue);
+        //hitParticle.Play();
+        currentHealth -= damage;
+        SlideText hitText = pooler.GetPooledText();
+        hitText.gameObject.SetActive(true);
+        hitText.SetTheText("", (int)damage, Color.red, null, transform.position);
+        vibration.SoftVibration();
+        if (currentHealth <= 0) gameManager.FinishTheGame(false);
     }
 
     #region Upgrade
@@ -73,6 +93,5 @@ public class PlayerManager : MonoBehaviour
     {
 
     }
-
     #endregion
 }

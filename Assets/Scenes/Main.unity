@@ -196,6 +196,38 @@ PrefabInstance:
       propertyPath: m_Name
       value: Object Pooler
       objectReference: {fileID: 0}
+    - target: {fileID: 4191595481970433957, guid: c6282f0179621a644b771f60523675cc, type: 3}
+      propertyPath: itemsToPool.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4191595481970433957, guid: c6282f0179621a644b771f60523675cc, type: 3}
+      propertyPath: textsToPool.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4191595481970433957, guid: c6282f0179621a644b771f60523675cc, type: 3}
+      propertyPath: itemsToPool.Array.data[4].amountToPool
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4191595481970433957, guid: c6282f0179621a644b771f60523675cc, type: 3}
+      propertyPath: itemsToPool.Array.data[4].objectToPool
+      value: 
+      objectReference: {fileID: 5965662044040928813, guid: 818c362bc01b09a4a83feca3d7408314, type: 3}
+    - target: {fileID: 4191595481970433957, guid: c6282f0179621a644b771f60523675cc, type: 3}
+      propertyPath: itemsToPool.Array.data[4].shouldExpand
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4191595481970433957, guid: c6282f0179621a644b771f60523675cc, type: 3}
+      propertyPath: textsToPool.Array.data[0].amountToPool
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4191595481970433957, guid: c6282f0179621a644b771f60523675cc, type: 3}
+      propertyPath: textsToPool.Array.data[0].objectToPool
+      value: 
+      objectReference: {fileID: 5965662044040928813, guid: 818c362bc01b09a4a83feca3d7408314, type: 3}
+    - target: {fileID: 4191595481970433957, guid: c6282f0179621a644b771f60523675cc, type: 3}
+      propertyPath: textsToPool.Array.data[0].shouldExpand
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4191595481970433962, guid: c6282f0179621a644b771f60523675cc, type: 3}
       propertyPath: m_RootOrder
       value: 3

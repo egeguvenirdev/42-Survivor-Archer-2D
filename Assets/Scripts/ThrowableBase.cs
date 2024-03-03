@@ -2,13 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerThroable : PoolableObjectBase
+public class ThrowableBase : PoolableObjectBase
 {
     [SerializeField] private float lifeTime;
     [SerializeField] private float speed = 5f;
     [SerializeField] private CircleCollider2D col;
     private float remainingTime;
     private bool canMove;
+    private float damage;
+
+    public float Damage { get => damage; set => damage = value; }
 
     public override void Init()
     {

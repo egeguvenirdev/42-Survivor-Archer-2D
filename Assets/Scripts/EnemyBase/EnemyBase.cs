@@ -27,21 +27,6 @@ public abstract class EnemyBase : PoolableObjectBase, IDamageable
     protected ObjectPooler pooler;
     protected VibrationManager vibration;
 
-    public float setHealth
-    {
-        get => currentHealth;
-        private set
-        {
-            value = Mathf.Clamp(value, 0, float.MaxValue);
-            //hitParticle.Play();
-            currentHealth -= value;
-            SlideText hitText = pooler.GetPooledText();
-            hitText.SetTheText("", (int)value, Color.red, null, transform.position);
-            vibration.SoftVibration();
-            if (currentHealth <= 0) DeInit();
-        }
-    }
-
     private void Start()
     {
         pooler = ObjectPooler.Instance;
@@ -92,6 +77,12 @@ public abstract class EnemyBase : PoolableObjectBase, IDamageable
 
     public void TakeDamage(float damage)
     {
-        setHealth = damage;
+        damage = Mathf.Clamp(damage, 0, float.MaxValue);
+        //hitParticle.Play();
+        currentHealth -= damage;
+        SlideText hitText = pooler.GetPooledText();
+        hitText.SetTheText("", (int)damage, Color.red, null, transform.position);
+        vibration.SoftVibration();
+        if (currentHealth <= 0) DeInit();
     }
 }
