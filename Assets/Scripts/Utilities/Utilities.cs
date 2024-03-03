@@ -15,9 +15,16 @@ public enum EnemyType
     Range
 }
 
+public enum SkillType
+{
+    Passive,
+    Fear
+}
+
 public enum PoolObjectType
 {
     PlayerThrowable,
+    PlayerGravityThrowable,
     RangeEnemy,
     MeeleEnemy,
     EnemyThrowable,

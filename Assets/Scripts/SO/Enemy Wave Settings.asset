@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Enemy Wave Settings
   m_EditorClassIdentifier: 
   wavePrefs:
-    enemyPrefab: 0100000002000000
+    enemyPrefab: 0200000003000000
     enemyCountsByLevel: 0200000005000000
     enemyCountPerWave: 10
     coolDown: 10

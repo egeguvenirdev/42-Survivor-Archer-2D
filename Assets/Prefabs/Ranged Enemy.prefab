@@ -244,7 +244,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30ea8cd5868da2045b2b8356d32d9eef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectType: 1
+  objectType: 2
   enemyInfos: {fileID: 11400000, guid: 2a7f98c6eb9fd1e468c582f5a534bb72, type: 2}
   model: {fileID: 4082663427740686281}
   animancer: {fileID: 4082663427740686276}

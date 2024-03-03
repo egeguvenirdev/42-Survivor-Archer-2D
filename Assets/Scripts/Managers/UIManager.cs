@@ -29,6 +29,7 @@ public class UIManager : MonoSingleton<UIManager>
     private LevelManager levelManager;
     private Tweener smoothTween;
     private float smoothMoneyNumbers = 0;
+    private bool mobileCheck;
 
     public Transform GetMoneyImageTranform
     {
@@ -50,7 +51,7 @@ public class UIManager : MonoSingleton<UIManager>
         levelManager = LevelManager.Instance;
         ActionManager.GameStart += OpenInGameUis;
         ActionManager.GameEnd += CloseInGameUis;
-
+        mobileCheck = mobileDeviceCheck;
         LevelText();
 
         for (int i = 0; i < upgradeButtons.Length; i++)
@@ -66,7 +67,7 @@ public class UIManager : MonoSingleton<UIManager>
         //fill it
         for (int i = 0; i < skillButtons.Length; i++)
         {
-            skillButtons[i].Init(mobileDeviceCheck);
+            skillButtons[i].Init(mobileCheck);
         }
     }
 
@@ -126,6 +127,8 @@ public class UIManager : MonoSingleton<UIManager>
         {
             InGameUis[i].SetActive(true);
         }
+
+        if (!mobileCheck) moveJoystick.gameObject.SetActive(false);
     }
 
     public void CloseInGameUis(bool check)

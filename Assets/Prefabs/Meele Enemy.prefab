@@ -105,7 +105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: deb0f9a1058048d4eb6a1d711cb5972c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectType: 2
+  objectType: 3
   enemyInfos: {fileID: 11400000, guid: 4f65aba11e78f7843a11cf4a3efbda49, type: 2}
   model: {fileID: 4009860073502988067}
   animancer: {fileID: 4009860073502988078}

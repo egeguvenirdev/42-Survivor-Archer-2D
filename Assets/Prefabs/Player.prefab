@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5590426989397650942}
   - component: {fileID: 1312985647548402767}
+  - component: {fileID: 491476480636508904}
+  - component: {fileID: 7285595105414728077}
   m_Layer: 0
   m_Name: Bow
   m_TagString: Untagged
@@ -49,6 +51,36 @@ MonoBehaviour:
   damage: 20
   aimHolder: {fileID: 5590426989397650942}
   aim: {fileID: 7263510985667687178}
+--- !u!114 &491476480636508904
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3859632566656420846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: faadb7c19e59e9148b5146ab9027df82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillType: 1
+  fearDuration: 2
+--- !u!114 &7285595105414728077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3859632566656420846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02bd3ddecb725fa4ab97fd62256c2fd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillType: 0
+  bladeCountPerFire: 10
+  radius: 0.1
+  damage: 10
 --- !u!1 &7263510985667687178
 GameObject:
   m_ObjectHideFlags: 0
@@ -286,6 +318,7 @@ GameObject:
   - component: {fileID: 126204315692894878}
   - component: {fileID: 4761627904468615617}
   - component: {fileID: 182378436109458471}
+  - component: {fileID: 1511556061750694011}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -323,6 +356,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   joyRunner: {fileID: 126204315692894878}
   keyRunner: {fileID: 4761627904468615617}
+  skillManager: {fileID: 1511556061750694011}
   bow: {fileID: 1312985647548402767}
   characterTransform: {fileID: 7334631500952762661}
   maxHp: 100
@@ -378,3 +412,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 1000
   dirMultiplier: 100
+--- !u!114 &1511556061750694011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7334631501480717700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 298b5deb17546f24b9f75a1066f63eb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillBase:
+  - {fileID: 491476480636508904}
+  - {fileID: 7285595105414728077}

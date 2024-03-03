@@ -42,6 +42,7 @@ public class PassiveSkillCard : PlayerSkillCardBase
 
     public void OnButtonClick()
     {
+        ActionManager.PlayerSkillActivated?.Invoke(skillType);
         currentCooldown = cooldown;
         coolDownText.text = "Activated";
         button.interactable = false;

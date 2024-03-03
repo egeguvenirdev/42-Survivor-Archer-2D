@@ -34,8 +34,9 @@ public class FearSkillCard : PlayerSkillCardBase
     public void OnButtonClick(KeyCode key)
     {
         Debug.Log("ref key: " + key + " keykode: " + keyCode);
-        if (keyCode == key)
+        if (keyCode == key && currentCooldown <= 0)
         {
+            ActionManager.PlayerSkillActivated?.Invoke(skillType);
             currentCooldown = cooldown;
             coolDownText.text = "Activated";
             button.interactable = false;
@@ -44,6 +45,7 @@ public class FearSkillCard : PlayerSkillCardBase
 
     public void OnButtonClick()
     {
+        ActionManager.PlayerSkillActivated?.Invoke(skillType);
         currentCooldown = cooldown;
         coolDownText.text = "Activated";
         button.interactable = false;

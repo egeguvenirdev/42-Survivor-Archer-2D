@@ -14,7 +14,7 @@ public class MeeleEnemy : EnemyBase
 
         if (!canMove) return;
 
-        agent.SetDestination(player);
+        agent.SetDestination(player * directionMultiplier);
         if (agent.remainingDistance > 0 && agent.remainingDistance < range)
         {
             agent.isStopped = true;

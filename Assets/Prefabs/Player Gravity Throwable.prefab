@@ -128,7 +128,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 0}
-  m_Color: {r: 1, g: 0.4669811, b: 0.4669811, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -147,11 +147,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6139176402853465217}
-  - component: {fileID: 6165136733562572548}
+  - component: {fileID: 685679596739467611}
   - component: {fileID: 6139176402853465216}
   - component: {fileID: 6139176402853465223}
   m_Layer: 7
-  m_Name: Enemy Throwable
+  m_Name: Player Gravity Throwable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -173,7 +173,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6165136733562572548
+--- !u!114 &685679596739467611
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -182,12 +182,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 6139176402853465222}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74cb40f9b61005346abc8c8da7619221, type: 3}
+  m_Script: {fileID: 11500000, guid: a56f714147ed93f4296a803cea3932c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectType: 4
+  objectType: 1
   lifeTime: 2
-  speed: 3
+  speed: 2
   col: {fileID: 6139176402853465223}
 --- !u!50 &6139176402853465216
 Rigidbody2D:
@@ -204,7 +204,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 0
+  m_GravityScale: 0.3
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1

@@ -11,7 +11,13 @@ public class RangedEnemy : EnemyBase
         playerPos = player;
         CheckDirection();
 
-        if (!canMove) return;
+        if (!canMove)
+        {
+
+            agent.SetDestination((transform.position - player) + transform.position);
+            return;
+        }
+
 
         agent.SetDestination(player);
         if (agent.remainingDistance > 0 && agent.remainingDistance < range)
@@ -60,7 +66,7 @@ public class RangedEnemy : EnemyBase
 
     protected override void CheckDirection()
     {
-        if(playerPos.x <= transform.localScale.x) model.localScale = new Vector3(-1, 1, 1);
+        if (playerPos.x <= transform.localScale.x) model.localScale = new Vector3(-1, 1, 1);
         else model.localScale = Vector3.one;
     }
 }

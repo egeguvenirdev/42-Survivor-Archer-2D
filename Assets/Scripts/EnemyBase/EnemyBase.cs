@@ -11,8 +11,10 @@ public abstract class EnemyBase : PoolableObjectBase, IDamageable
     //[SerializeField] [EnumFlags] private DropType dropType;
 
     private float maxHealth;
+    private float speed;
     protected float range;
     protected float attackDamage;
+    protected float directionMultiplier = 1f;
     private float currentHealth;
 
     [Header("Animation")]
@@ -42,6 +44,7 @@ public abstract class EnemyBase : PoolableObjectBase, IDamageable
 
         ActionManager.AiUpdater += MoveTowardsPlayer;
         ActionManager.GameEnd += OnGameEnd;
+        ActionManager.FearSkill += OnFear;
     }
 
     public void DeInit()
@@ -52,6 +55,7 @@ public abstract class EnemyBase : PoolableObjectBase, IDamageable
 
         ActionManager.AiUpdater -= MoveTowardsPlayer;
         ActionManager.GameEnd -= OnGameEnd;
+        ActionManager.FearSkill -= OnFear;
     }
 
     protected abstract void MoveTowardsPlayer(Vector3 player);
@@ -71,9 +75,11 @@ public abstract class EnemyBase : PoolableObjectBase, IDamageable
         EnemyInfos.CharacterPref currentLevel = enemyInfos.GetCharacterPrefs;
 
         maxHealth = currentLevel.maxHealth;
-        agent.speed = currentLevel.speed;
+        speed = currentLevel.speed;
         range = currentLevel.range;
         attackDamage = currentLevel.attackDamge;
+
+        agent.speed = speed;
     }
 
     public void TakeDamage(float damage)
@@ -85,5 +91,22 @@ public abstract class EnemyBase : PoolableObjectBase, IDamageable
         hitText.SetTheText("", (int)damage, Color.red, null, transform.position);
         vibration.SoftVibration();
         if (currentHealth <= 0) DeInit();
+    }
+
+    private void OnFear(float duration)
+    {
+        StopAllCoroutines();
+        StartCoroutine(FearCo(duration));
+    }
+
+    private IEnumerator FearCo(float duration)
+    {
+        canMove = false;
+        agent.isStopped = false;
+        directionMultiplier = -1;
+        isRunning = true;
+        yield return CoroutineManager.GetTime(duration, 30f);
+        directionMultiplier = 1;
+        canMove = true;
     }
 }

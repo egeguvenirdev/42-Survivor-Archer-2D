@@ -4235,6 +4235,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillInfos: {fileID: 11400000, guid: a7b6392b8fae681428523c0b5e0337da, type: 2}
+  skillType: 0
   button: {fileID: 6587783744646405291}
   coolDownText: {fileID: 1586269075}
   skillName: {fileID: 6756461589042219476}
@@ -5280,6 +5281,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillInfos: {fileID: 11400000, guid: bfd81a77eb1d8704b8a48133129a72f2, type: 2}
+  skillType: 0
   button: {fileID: 1592860630552316898}
   coolDownText: {fileID: 366585419}
   skillName: {fileID: 5390942575737952217}

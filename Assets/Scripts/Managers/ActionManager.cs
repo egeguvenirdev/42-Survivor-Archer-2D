@@ -14,7 +14,6 @@ public static class ActionManager
     public static Action<KeyCode> InputType { get; set; }
     public static Action<bool> FireInput { get; set; }
     public static Action<bool> MoveInput { get; set; }
-    public static Action<float> PlayerDamage { get; set; }
 
     //MoneyActions
     public static Action<float> UpdateMoney { get; set; }
@@ -23,6 +22,9 @@ public static class ActionManager
 
     //Player Controls
     public static Action<Vector2> SwerveValue { get; set; }
+    public static Action<float> PlayerDamage { get; set; }
+    public static Action<SkillType> PlayerSkillActivated { get; set; }
+    public static Action<float> FearSkill { get; set; }
 
     //Visual Effects
     public static Action CamShake { get; set; }

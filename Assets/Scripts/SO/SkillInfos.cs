@@ -19,5 +19,6 @@ public class SkillInfos : ScriptableObject
         public string skillButtonName;
         public KeyCode keyCode;
         public Sprite image;
+        public SkillType skillType;
     }
 }

@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillPrefs:
     coolDown: 10
-    skillCastDuration: 1
     skillName: Fear
     skillButtonName: (E)
     keyCode: 101
     image: {fileID: -6550600755495098204, guid: d2379844d0a45d941a90316d1beb9932, type: 3}
+    skillType: 1

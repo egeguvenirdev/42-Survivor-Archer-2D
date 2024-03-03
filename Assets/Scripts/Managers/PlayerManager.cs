@@ -8,6 +8,7 @@ public class PlayerManager : MonoBehaviour, IDamageable
     [Header("Components")]
     [SerializeField] private JoystickPlayerMover joyRunner;
     [SerializeField] private KeyBoardPlayerMover keyRunner;
+    [SerializeField] private SkillManager skillManager;
     [SerializeField] private Bow bow;
     [SerializeField] private Transform characterTransform;
 
@@ -34,6 +35,7 @@ public class PlayerManager : MonoBehaviour, IDamageable
         if (inputCheck) joyRunner.Init();
         else keyRunner.Init();
         bow.Init();
+        skillManager.Init();
         currentHealth = maxHp;
         ActionManager.PlayerDamage += TakeDamage;
     }
@@ -43,6 +45,7 @@ public class PlayerManager : MonoBehaviour, IDamageable
         if (inputCheck) joyRunner.DeInit();
         else keyRunner.DeInit();
         bow.DeInit();
+        skillManager.DeInit();
 
         ActionManager.PlayerDamage -= TakeDamage;
     }

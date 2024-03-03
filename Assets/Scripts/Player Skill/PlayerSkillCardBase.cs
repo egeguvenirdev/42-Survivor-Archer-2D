@@ -7,6 +7,7 @@ using TMPro;
 public abstract class PlayerSkillCardBase : MonoBehaviour
 {
     [SerializeField] private SkillInfos skillInfos;
+    [SerializeField] protected SkillType skillType;
     [SerializeField] protected Button button;
     [SerializeField] protected TMP_Text coolDownText;
     [SerializeField] protected TMP_Text skillName;
@@ -41,6 +42,7 @@ public abstract class PlayerSkillCardBase : MonoBehaviour
         if (mobileCheck) skillName.text = "" + skillStats.skillName;
         else skillName.text = "" + skillStats.skillName + " " + skillStats.skillButtonName;
         cooldown = skillStats.coolDown;
+        skillType = skillStats.skillType;
         buttonImage.sprite = skillStats.image;
         keyCode = skillStats.keyCode;
     }
