@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SkillInfos : MonoBehaviour
+[CreateAssetMenu(fileName = "New Skill Settings", menuName = "New Skill")]
+
+public class SkillInfos : ScriptableObject
 {
     [SerializeField] private SkillPref skillPrefs;
 
@@ -14,6 +16,8 @@ public class SkillInfos : MonoBehaviour
         [Header("Stats")]
         public float coolDown;
         public string skillName;
+        public string skillButtonName;
+        public KeyCode keyCode;
         public Sprite image;
     }
 }

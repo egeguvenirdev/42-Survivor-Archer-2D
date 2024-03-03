@@ -16,14 +16,31 @@ public class InputManager
 
     private static void Thick(float deltaTime)
     {
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.E))
         {
-            ActionManager.InputType?.Invoke(KeyCode.Q);
+            Debug.Log("e key");
+            ActionManager.InputType?.Invoke(KeyCode.E);
+        }
+    }
+
+    public bool IsMobileDevice()
+    {
+        //Check if the device running this is a handheld
+        if (SystemInfo.deviceType == DeviceType.Handheld)
+        {
+            return true;
         }
 
-        if (Input.GetKeyDown(KeyCode.W))
+        //Check if the device running this is a desktop
+        else if (SystemInfo.deviceType == DeviceType.Desktop)
         {
-            ActionManager.InputType?.Invoke(KeyCode.W);
+            return false;
+        }
+
+        //Check if the device running this is unknown
+        else
+        {
+            return false;
         }
     }
 }

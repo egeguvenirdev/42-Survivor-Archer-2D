@@ -187,7 +187,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 10}
+  m_AnchoredPosition: {x: 0, y: 4.7}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &366585420
@@ -322,7 +322,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 10}
+  m_AnchoredPosition: {x: 0, y: 4.7}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1586269076
@@ -928,7 +928,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2516175600248927281
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4109,6 +4109,7 @@ GameObject:
   - component: {fileID: 7033278543653108724}
   - component: {fileID: 7223890884771934258}
   - component: {fileID: 6587783744646405291}
+  - component: {fileID: 1273378723}
   m_Layer: 5
   m_Name: Passive Skill
   m_TagString: Untagged
@@ -4134,9 +4135,9 @@ RectTransform:
   m_Father: {fileID: 2516175600248927281}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 62.82, y: 19}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7033278543653108724
@@ -4221,6 +4222,23 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1273378723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5613061754659579248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcb8cdce5a711f94a95e8f1e536eeded, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillInfos: {fileID: 11400000, guid: a7b6392b8fae681428523c0b5e0337da, type: 2}
+  button: {fileID: 6587783744646405291}
+  coolDownText: {fileID: 1586269075}
+  skillName: {fileID: 6756461589042219476}
+  buttonImage: {fileID: 113217251}
 --- !u!1 &5649772461964585756
 GameObject:
   m_ObjectHideFlags: 0
@@ -4840,7 +4858,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 33}
+  m_AnchoredPosition: {x: 0, y: 28.9}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7462251287596595633
@@ -4871,7 +4889,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Button
+  m_text: Weapon Well (passive)
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4898,8 +4916,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 12.66
+  m_fontSizeBase: 12.66
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -4910,7 +4928,7 @@ MonoBehaviour:
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
-  m_lineSpacing: 0
+  m_lineSpacing: -30.23
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
@@ -5124,6 +5142,7 @@ GameObject:
   - component: {fileID: 2799840787179388313}
   - component: {fileID: 9109349495941727990}
   - component: {fileID: 1592860630552316898}
+  - component: {fileID: 373761464}
   m_Layer: 5
   m_Name: Fear Skill
   m_TagString: Untagged
@@ -5149,9 +5168,9 @@ RectTransform:
   m_Father: {fileID: 2516175600248927281}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 188.45999, y: 19}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2799840787179388313
@@ -5235,7 +5254,36 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 9109349495941727990}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 373761464}
+        m_TargetAssemblyTypeName: FearSkill, Assembly-CSharp
+        m_MethodName: OnButtonClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &373761464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7297462341731726643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efd7f0670215ae946a7ad45440691bc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillInfos: {fileID: 11400000, guid: bfd81a77eb1d8704b8a48133129a72f2, type: 2}
+  button: {fileID: 1592860630552316898}
+  coolDownText: {fileID: 366585419}
+  skillName: {fileID: 5390942575737952217}
+  buttonImage: {fileID: 69372237}
 --- !u!1 &8092542334721864508
 GameObject:
   m_ObjectHideFlags: 0
@@ -5925,10 +5973,13 @@ MonoBehaviour:
   - {fileID: 657012160009686896}
   - {fileID: 116651706218006184}
   InGameUis:
+  - {fileID: 732759124829505102}
   - {fileID: 260907309298075947}
   - {fileID: 9073219437621904072}
   - {fileID: 5275518068099170964}
-  - {fileID: 732759124829505102}
+  skillButtons:
+  - {fileID: 1273378723}
+  - {fileID: 373761464}
   upgradePanel: {fileID: 3380426386670466637}
   moveJoystick: {fileID: 260907309298075945}
   bowJoystick: {fileID: 9073219437621904074}
@@ -6204,7 +6255,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 33}
+  m_AnchoredPosition: {x: 0, y: 28.900002}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4716947432054836693
@@ -6262,8 +6313,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 20
+  m_fontSizeBase: 20
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

@@ -7,48 +7,41 @@ using TMPro;
 public abstract class PlayerSkillBase : MonoBehaviour
 {
     [SerializeField] private SkillInfos skillInfos;
-    [SerializeField] private Button button;
-    [SerializeField] protected TMP_Text coolDown;
+    [SerializeField] protected Button button;
+    [SerializeField] protected TMP_Text coolDownText;
     [SerializeField] protected TMP_Text skillName;
     [SerializeField] protected Image buttonImage;
-    private float currentCooldown;
+    protected float currentCooldown;
+    protected float cooldown;
+    protected KeyCode keyCode;
 
-    public void Init()
+    protected bool mobileCheck;
+
+    public virtual void Init(bool isMobileDevice)
     {
         SetProperties();
         ActionManager.Updater += OnUpdate;
         currentCooldown = 0;
+        mobileCheck = isMobileDevice;
     }
 
-    public void DeInit()
+    public virtual void DeInit()
     {
 
         SetProperties();
         ActionManager.Updater -= OnUpdate;
     }
 
-    protected virtual void OnUpdate(float deltaTime)
-    {
-        if(currentCooldown > 0)
-        {
-            currentCooldown -= deltaTime;
-            coolDown.text = "" + (int)currentCooldown;
-            return;
-        }
-        else
-        {
-            coolDown.text = "Ready";
-        }
-    }
+    protected abstract void OnUpdate(float deltaTime);
 
     private void SetProperties()
     {
         SkillInfos.SkillPref skillStats = skillInfos.GetSkillPrefs;
 
-        coolDown.text = "" + skillStats.coolDown;
-        skillName.text = skillStats.skillName;
+        if (mobileCheck) skillName.text = "" + skillStats.skillName;
+        else skillName.text = "" + skillStats.skillName + " " + skillStats.skillButtonName;
+        cooldown = skillStats.coolDown;
         buttonImage.sprite = skillStats.image;
+        keyCode = skillStats.keyCode;
     }
-
-    public abstract void OnButtonClick();
 }
