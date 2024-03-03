@@ -61,8 +61,9 @@ public abstract class EnemyBase : PoolableObjectBase, IDamageable
     private void OnGameEnd(bool playerWin)
     {
         StopAllCoroutines();
-        animancer.PlayAnimation(idleAnim);
         agent.isStopped = true;
+        canMove = false;
+        animancer.PlayAnimation(idleAnim);
     }
 
     private void SetProperties()
