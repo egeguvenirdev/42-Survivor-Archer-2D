@@ -8,27 +8,24 @@ public class RangedEnemy : EnemyBase
 
     protected override void MoveTowardsPlayer(Vector3 player)
     {
-        if (agent == null) return;
-
-        if (player != null && canMove) // check the player if its dead or what
-        {
-            agent.SetDestination(player);
-        }
-
         playerPos = player;
+        CheckDirection();
+
+        if (!canMove) return;
+
+        agent.SetDestination(player);
         if (agent.remainingDistance > 0 && agent.remainingDistance < range)
         {
-            if (canMove)
-            {
-                isRunning = false;
-                animancer.PlayAnimation(idleAnim);
-                StartCoroutine(HitRoutine());
-            }
+            agent.isStopped = true;
+            isRunning = false;
+            animancer.PlayAnimation(idleAnim);
+            StartCoroutine(HitRoutine());
         }
         else
         {
-            if (canMove && !isRunning)
+            if (!isRunning)
             {
+                agent.isStopped = false;
                 animancer.PlayAnimation(runAnim);
                 StopAllCoroutines();
                 isRunning = true;
@@ -39,9 +36,9 @@ public class RangedEnemy : EnemyBase
     private IEnumerator HitRoutine()
     {
         canMove = false;
-        yield return new WaitForSeconds(idleAnim.length / 2);
+        yield return new WaitForSeconds(1);
         Fire();
-        yield return new WaitForSeconds(idleAnim.length / 2);
+        yield return new WaitForSeconds(1);
         //if (animancer.gameObject.activeInHierarchy) animancer.Stop();
         canMove = true;
     }
@@ -50,8 +47,20 @@ public class RangedEnemy : EnemyBase
     {
         PoolableObjectBase throwable = pooler.GetPooledObjectWithType(PoolObjectType.PlayerThrowable);
         throwable.transform.position = transform.position;
-        throwable.transform.rotation = Quaternion.Euler(0, 0, Vector3.Angle(transform.position, playerPos));
+        throwable.transform.LookAt(playerPos);
+
+        Vector3 targetPos = (playerPos - throwable.transform.position).normalized;
+        float angle = Vector3.Angle(new Vector3(targetPos.x, 0, targetPos.y), Vector3.forward);
+        if (targetPos.x >= 0) angle *= -1f;
+        throwable.transform.rotation = Quaternion.Euler(0f, 0f, angle);
+
         throwable.gameObject.SetActive(true);
         throwable.Init();
+    }
+
+    protected override void CheckDirection()
+    {
+        if(playerPos.x <= transform.localScale.x) model.localScale = new Vector3(-1, 1, 1);
+        else model.localScale = Vector3.one;
     }
 }

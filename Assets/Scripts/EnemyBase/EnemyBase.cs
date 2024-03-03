@@ -7,6 +7,7 @@ public abstract class EnemyBase : PoolableObjectBase, IDamageable
 {
     [Header("Properties")]
     [SerializeField] protected EnemyInfos enemyInfos;
+    [SerializeField] protected Transform model;
     //[SerializeField] [EnumFlags] private DropType dropType;
 
     private float maxHealth;
@@ -50,6 +51,7 @@ public abstract class EnemyBase : PoolableObjectBase, IDamageable
     public override void Init()
     {
         agent.isStopped = false;
+        agent.updateRotation = false;
         canMove = true;
         SetProperties();
 
@@ -68,6 +70,8 @@ public abstract class EnemyBase : PoolableObjectBase, IDamageable
     }
 
     protected abstract void MoveTowardsPlayer(Vector3 player);
+
+    protected abstract void CheckDirection();
 
     private void OnGameEnd(bool playerWin)
     {

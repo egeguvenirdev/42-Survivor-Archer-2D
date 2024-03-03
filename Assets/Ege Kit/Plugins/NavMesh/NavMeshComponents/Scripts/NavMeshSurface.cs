@@ -1,10 +1,13 @@
+using NavMeshPlus.Extensions;
 using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.AI;
 #if UNITY_EDITOR
 using UnityEditor;
 using UnityEditor.SceneManagement;
 #endif
 
-namespace UnityEngine.AI
+namespace NavMeshPlus.Components
 {
     public enum CollectObjects
     {
@@ -15,11 +18,11 @@ namespace UnityEngine.AI
 
     [ExecuteAlways]
     [DefaultExecutionOrder(-102)]
-    [AddComponentMenu("Navigation/NavMeshSurface", 30)]
+    [AddComponentMenu("Navigation/Navigation Surface", 30)]
     [HelpURL("https://github.com/Unity-Technologies/NavMeshComponents#documentation-draft")]
     public class NavMeshSurface : MonoBehaviour
     {
-        [SerializeField]
+        [SerializeField, NavMeshAgent]
         int m_AgentTypeID;
         public int agentTypeID { get { return m_AgentTypeID; } set { m_AgentTypeID = value; } }
 
@@ -43,7 +46,7 @@ namespace UnityEngine.AI
         NavMeshCollectGeometry m_UseGeometry = NavMeshCollectGeometry.RenderMeshes;
         public NavMeshCollectGeometry useGeometry { get { return m_UseGeometry; } set { m_UseGeometry = value; } }
 
-        [SerializeField]
+        [SerializeField, NavMeshArea]
         int m_DefaultArea;
         public int defaultArea { get { return m_DefaultArea; } set { m_DefaultArea = value; } }
 
@@ -73,6 +76,10 @@ namespace UnityEngine.AI
         bool m_BuildHeightMesh;
         public bool buildHeightMesh { get { return m_BuildHeightMesh; } set { m_BuildHeightMesh = value; } }
 
+        [SerializeField]
+        bool m_HideEditorLogs;
+        public bool hideEditorLogs { get { return m_HideEditorLogs; } set { m_HideEditorLogs = value; } }
+
         // Reference to whole scene navmesh data asset.
         [UnityEngine.Serialization.FormerlySerializedAs("m_BakedNavMeshData")]
         [SerializeField]
@@ -85,6 +92,7 @@ namespace UnityEngine.AI
         Quaternion m_LastRotation = Quaternion.identity;
 
         static readonly List<NavMeshSurface> s_NavMeshSurfaces = new List<NavMeshSurface>();
+        public INavMeshExtensionsProvider NevMeshExtensions { get; set; } = new NavMeshExtensionsProvider();
 
         public static List<NavMeshSurface> activeSurfaces
         {
@@ -139,7 +147,7 @@ namespace UnityEngine.AI
             var buildSettings = NavMesh.GetSettingsByID(m_AgentTypeID);
             if (buildSettings.agentTypeID == -1)
             {
-                Debug.LogWarning("No build settings for agent type ID " + agentTypeID, this);
+                if (!m_HideEditorLogs) Debug.LogWarning("No build settings for agent type ID " + agentTypeID, this);
                 buildSettings.agentTypeID = m_AgentTypeID;
             }
 
@@ -158,7 +166,9 @@ namespace UnityEngine.AI
 
         public void BuildNavMesh()
         {
-            var sources = CollectSources();
+            using var builderState = new NavMeshBuilderState() { };
+
+            var sources = CollectSources(builderState);
 
             // Use unscaled bounds - this differs in behaviour from e.g. collider components.
             // But is similar to reflection probe - and since navmesh data has no scaling support - it is the right choice here.
@@ -167,7 +177,11 @@ namespace UnityEngine.AI
             {
                 sourcesBounds = CalculateWorldBounds(sources);
             }
-
+            builderState.worldBounds = sourcesBounds;
+            for (int i = 0; i < NevMeshExtensions.Count; ++i)
+            {
+                NevMeshExtensions[i].PostCollectSources(this, sources, builderState);
+            }
             var data = NavMeshBuilder.BuildNavMeshData(GetBuildSettings(),
                     sources, sourcesBounds, transform.position, transform.rotation);
 
@@ -181,16 +195,43 @@ namespace UnityEngine.AI
             }
         }
 
+        // Source: https://github.com/Unity-Technologies/NavMeshComponents/issues/97#issuecomment-528692289
+        public AsyncOperation BuildNavMeshAsync()
+        {
+            RemoveData();
+            m_NavMeshData = new NavMeshData(m_AgentTypeID)
+            {
+                name = gameObject.name,
+                position = transform.position,
+                rotation = transform.rotation
+            };
+
+            if (isActiveAndEnabled)
+            {
+                AddData();
+            }
+
+            return UpdateNavMesh(m_NavMeshData);
+        }
+
         public AsyncOperation UpdateNavMesh(NavMeshData data)
         {
-            var sources = CollectSources();
+            using var builderState = new NavMeshBuilderState() { };
+
+            var sources = CollectSources(builderState);
 
             // Use unscaled bounds - this differs in behaviour from e.g. collider components.
             // But is similar to reflection probe - and since navmesh data has no scaling support - it is the right choice here.
             var sourcesBounds = new Bounds(m_Center, Abs(m_Size));
             if (m_CollectObjects == CollectObjects.All || m_CollectObjects == CollectObjects.Children)
+            {
                 sourcesBounds = CalculateWorldBounds(sources);
-
+            }
+            builderState.worldBounds = sourcesBounds;
+            for (int i = 0; i < NevMeshExtensions.Count; ++i)
+            {
+                NevMeshExtensions[i].PostCollectSources(this, sources, builderState);
+            }
             return NavMeshBuilder.UpdateNavMeshDataAsync(data, GetBuildSettings(), sources, sourcesBounds);
         }
 
@@ -269,7 +310,7 @@ namespace UnityEngine.AI
             }
         }
 
-        List<NavMeshBuildSource> CollectSources()
+        List<NavMeshBuildSource> CollectSources(NavMeshBuilderState builderState)
         {
             var sources = new List<NavMeshBuildSource>();
             var markups = new List<NavMeshBuildMarkup>();
@@ -320,6 +361,10 @@ namespace UnityEngine.AI
                     UnityEditor.AI.NavMeshBuilder.CollectSourcesInStage(
                         worldBounds, m_LayerMask, m_UseGeometry, m_DefaultArea, markups, gameObject.scene, sources);
                 }
+                for (int i = 0; i < NevMeshExtensions.Count; ++i)
+                {
+                    NevMeshExtensions[i].CollectSources(this, sources, builderState);
+                }
             }
             else
 #endif
@@ -337,6 +382,10 @@ namespace UnityEngine.AI
                     Matrix4x4 localToWorld = Matrix4x4.TRS(transform.position, transform.rotation, Vector3.one);
                     var worldBounds = GetWorldBounds(localToWorld, new Bounds(m_Center, m_Size));
                     NavMeshBuilder.CollectSources(worldBounds, m_LayerMask, m_UseGeometry, m_DefaultArea, markups, sources);
+                }
+                for (int i = 0; i < NevMeshExtensions.Count; ++i)
+                {
+                    NevMeshExtensions[i].CollectSources(this, sources, builderState);
                 }
             }
 
@@ -356,7 +405,7 @@ namespace UnityEngine.AI
             return new Vector3(Mathf.Abs(v.x), Mathf.Abs(v.y), Mathf.Abs(v.z));
         }
 
-        static Bounds GetWorldBounds(Matrix4x4 mat, Bounds bounds)
+        public static Bounds GetWorldBounds(Matrix4x4 mat, Bounds bounds)
         {
             var absAxisX = Abs(mat.MultiplyVector(Vector3.right));
             var absAxisY = Abs(mat.MultiplyVector(Vector3.up));
@@ -366,13 +415,19 @@ namespace UnityEngine.AI
             return new Bounds(worldPosition, worldSize);
         }
 
-        Bounds CalculateWorldBounds(List<NavMeshBuildSource> sources)
+        public Bounds CalculateWorldBounds(List<NavMeshBuildSource> sources)
         {
             // Use the unscaled matrix for the NavMeshSurface
             Matrix4x4 worldToLocal = Matrix4x4.TRS(transform.position, transform.rotation, Vector3.one);
             worldToLocal = worldToLocal.inverse;
 
             var result = new Bounds();
+            var builderState = new NavMeshBuilderState() { worldBounds = result, worldToLocal = worldToLocal };
+            for (int i = 0; i < NevMeshExtensions.Count; ++i)
+            {
+                NevMeshExtensions[i].CalculateWorldBounds(this, sources, builderState);
+                result.Encapsulate(builderState.worldBounds);
+            }
             foreach (var src in sources)
             {
                 switch (src.shape)
@@ -385,9 +440,11 @@ namespace UnityEngine.AI
                     }
                     case NavMeshBuildSourceShape.Terrain:
                     {
+#if IS_TERRAIN_USED
                         // Terrain pivot is lower/left corner - shift bounds accordingly
                         var t = src.sourceObject as TerrainData;
                         result.Encapsulate(GetWorldBounds(worldToLocal * src.transform, new Bounds(0.5f * t.size, t.size)));
+#endif
                         break;
                     }
                     case NavMeshBuildSourceShape.Box:
@@ -453,7 +510,7 @@ namespace UnityEngine.AI
         {
             if (UnshareNavMeshAsset())
             {
-                Debug.LogWarning("Duplicating NavMeshSurface does not duplicate the referenced navmesh data", this);
+                if (!m_HideEditorLogs) Debug.LogWarning("Duplicating NavMeshSurface does not duplicate the referenced navmesh data", this);
                 m_NavMeshData = null;
             }
 

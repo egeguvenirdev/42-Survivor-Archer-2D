@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Ranged Eeemy
   m_EditorClassIdentifier: 
   characterPrefs:
-    speed: 2
-    range: 3
+    speed: 1
+    range: 1.5
     attackDamge: 5
     maxHealth: 20

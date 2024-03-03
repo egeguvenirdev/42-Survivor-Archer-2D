@@ -79,4 +79,9 @@ public class MeleeEnemy : EnemyBase
         canMove = true;
         isRunning = false;
     }
+
+    protected override void CheckDirection()
+    {
+        
+    }
 }
