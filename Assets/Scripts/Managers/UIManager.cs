@@ -11,7 +11,7 @@ public class UIManager : MonoSingleton<UIManager>
     [SerializeField] private ButtonBase[] panels;
     [SerializeField] private UpgradeCard[] upgradeButtons;
     [SerializeField] private GameObject[] InGameUis;
-    [SerializeField] private PlayerSkillBase[] skillButtons;
+    [SerializeField] private PlayerSkillCardBase[] skillButtons;
     [SerializeField] private ButtonBase upgradePanel;
     [SerializeField] private VariableJoystick moveJoystick;
     [SerializeField] private VariableJoystick bowJoystick;

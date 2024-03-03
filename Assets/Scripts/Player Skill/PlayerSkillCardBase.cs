@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public abstract class PlayerSkillBase : MonoBehaviour
+public abstract class PlayerSkillCardBase : MonoBehaviour
 {
     [SerializeField] private SkillInfos skillInfos;
     [SerializeField] protected Button button;

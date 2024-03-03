@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FearSkill : PlayerSkillBase
+public class FearSkillCard : PlayerSkillCardBase
 {
     public override void Init(bool isMobileDevice)
     {

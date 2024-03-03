@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PassiveSkill : PlayerSkillBase
+public class PassiveSkillCard : PlayerSkillCardBase
 {
     private float instantiateDelay = 2f;
     private float currentInstantiateDelay;
