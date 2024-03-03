@@ -19,6 +19,7 @@ public class UIManager : MonoSingleton<UIManager>
     [SerializeField] private TMP_Text currentLV;
     [SerializeField] private TMP_Text totalMoneyText;
     [SerializeField] private TMP_Text timerText;
+    [SerializeField] private TMP_Text highScoreText;
 
     [Header("Health & Xp Bars")]
     [SerializeField] private Image progressBarImage;
@@ -98,6 +99,11 @@ public class UIManager : MonoSingleton<UIManager>
     public void TimerText(string refText)
     {
         timerText.text = refText;
+    }
+
+    public void HighScoreText(string refText)
+    {
+        highScoreText.text = "Personal High Score \n" +refText;
     }
 
     public void SetProgress(float progress)

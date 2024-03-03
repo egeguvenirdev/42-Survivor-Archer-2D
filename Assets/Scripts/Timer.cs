@@ -14,11 +14,22 @@ public class Timer : MonoBehaviour
         timerIsRunning = true;
         uIManager = UIManager.Instance;
         gameManager = GameManager.Instance;
+
+        float minutes = Mathf.FloorToInt(PlayerPrefs.GetFloat("PlayerHighScore", 0) / 60);
+        float seconds = Mathf.FloorToInt(PlayerPrefs.GetFloat("PlayerHighScore", 0) % 60);
+        uIManager.HighScoreText(string.Format("{0:00}:{1:00}", minutes, seconds));
     }
 
     public void DeInit()
     {
         timerIsRunning = false;
+
+        if (PlayerPrefs.GetFloat("PlayerHighScore", 0) < elapsedTime) PlayerPrefs.SetFloat("PlayerHighScore", elapsedTime);
+
+        elapsedTime += 1;
+        float minutes = Mathf.FloorToInt(elapsedTime / 60);
+        float seconds = Mathf.FloorToInt(elapsedTime % 60);
+        uIManager.HighScoreText(string.Format("{0:00}:{1:00}", minutes, seconds));
     }
 
     void Update()
