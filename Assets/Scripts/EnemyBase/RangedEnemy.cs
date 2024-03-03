@@ -54,6 +54,7 @@ public class RangedEnemy : EnemyBase
         throwable.transform.rotation = Quaternion.Euler(0f, 0f, angle);
 
         throwable.gameObject.SetActive(true);
+        throwable.GetComponent<ThrowableBase>().Damage = attackDamage;
         throwable.Init();
     }
 

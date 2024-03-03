@@ -6,13 +6,15 @@ using DG.Tweening;
 public class PlayerManager : MonoBehaviour, IDamageable
 {
     [Header("Components")]
-    [SerializeField] private JoystickPlayerMover runnerScript;
+    [SerializeField] private JoystickPlayerMover joyRunner;
+    [SerializeField] private KeyBoardPlayerMover keyRunner;
     [SerializeField] private Bow bow;
     [SerializeField] private Transform characterTransform;
 
     [Header("Props")]
     [SerializeField] private float maxHp;
     private float currentHealth;
+    private bool inputCheck;
 
     private GameManager gameManager;
     private VibrationManager vibration;
@@ -23,12 +25,14 @@ public class PlayerManager : MonoBehaviour, IDamageable
         get => characterTransform;
     }
 
-    public void Init()
+    public void Init(bool mobileInputChek)
     {
         gameManager = GameManager.Instance;
         vibration = VibrationManager.Instance;
         pooler = ObjectPooler.Instance;
-        runnerScript.Init();
+        inputCheck = mobileInputChek;
+        if (inputCheck) joyRunner.Init();
+        else keyRunner.Init();
         bow.Init();
         currentHealth = maxHp;
         ActionManager.PlayerDamage += TakeDamage;
@@ -36,7 +40,8 @@ public class PlayerManager : MonoBehaviour, IDamageable
 
     public void DeInit()
     {
-        runnerScript.DeInit();
+        if (inputCheck) joyRunner.DeInit();
+        else keyRunner.DeInit();
         bow.DeInit();
 
         ActionManager.PlayerDamage -= TakeDamage;

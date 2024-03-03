@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shootingCooldown: 1
+  damage: 20
   aimHolder: {fileID: 5590426989397650942}
   aim: {fileID: 7263510985667687178}
 --- !u!1 &7263510985667687178
@@ -283,6 +284,7 @@ GameObject:
   - component: {fileID: 7334631501480717707}
   - component: {fileID: 7334631501480717704}
   - component: {fileID: 126204315692894878}
+  - component: {fileID: 4761627904468615617}
   - component: {fileID: 182378436109458471}
   m_Layer: 0
   m_Name: Player
@@ -319,7 +321,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86a8bc9d72a2ea541a17a8194ed8d98c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  runnerScript: {fileID: 126204315692894878}
+  joyRunner: {fileID: 126204315692894878}
+  keyRunner: {fileID: 4761627904468615617}
   bow: {fileID: 1312985647548402767}
   characterTransform: {fileID: 7334631500952762661}
   maxHp: 100
@@ -333,6 +336,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a37d705c8e9115e439ec799186182634, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bodySpeed: 2
+  clampValueXpos: 45
+  clampValueYpos: 45
+  character: {fileID: 7334631500952762661}
+  animancer: {fileID: 1440037956}
+  run: {fileID: 7400000, guid: 3ecb1b6efbb23eb40aac6a82a8a9eab3, type: 2}
+  idle: {fileID: 7400000, guid: c3efa3adc9a1c9f438274bbd8127bc3e, type: 2}
+--- !u!114 &4761627904468615617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7334631501480717700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d728dd66d5b715479a73519def46eed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   bodySpeed: 2

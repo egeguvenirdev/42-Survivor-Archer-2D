@@ -19,13 +19,11 @@ public class InputManager
         if (Input.GetKeyDown(KeyCode.Q))
         {
             ActionManager.InputType?.Invoke(KeyCode.Q);
-            Debug.Log("Q button is pressed");
         }
 
         if (Input.GetKeyDown(KeyCode.W))
         {
             ActionManager.InputType?.Invoke(KeyCode.W);
-            Debug.Log("W button is pressed");
         }
     }
 }

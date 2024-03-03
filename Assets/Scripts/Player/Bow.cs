@@ -5,6 +5,7 @@ using UnityEngine;
 public class Bow : MonoBehaviour
 {
     [SerializeField] private float shootingCooldown = 1f;
+    [SerializeField] private float damage = 20f;
     [SerializeField] private Transform aimHolder;
     [SerializeField] private GameObject aim;
     private float cooldownTimer = 0f;
@@ -44,6 +45,7 @@ public class Bow : MonoBehaviour
                 throwable.transform.position = transform.position;
                 throwable.transform.rotation = Quaternion.Euler(0, 0, angle);
                 throwable.gameObject.SetActive(true);
+                throwable.GetComponent<ThrowableBase>().Damage = damage;
                 throwable.Init();
                 cooldownTimer = shootingCooldown;
             }

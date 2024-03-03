@@ -59,7 +59,7 @@ public class GameManager : MonoSingleton<GameManager>
         ActionManager.GameStart?.Invoke();
 
         playerManager = FindObjectOfType<PlayerManager>();
-        playerManager.Init();
+        playerManager.Init(IsMobileDevice());
 
         enemySpawner = FindObjectOfType<EnemySpawner>();
         enemySpawner.Init();
@@ -95,13 +95,13 @@ public class GameManager : MonoSingleton<GameManager>
         //Check if the device running this is a handheld
         if (SystemInfo.deviceType == DeviceType.Handheld)
         {
-            return false;
+            return true;
         }
 
         //Check if the device running this is a desktop
         else if (SystemInfo.deviceType == DeviceType.Desktop)
         {
-            return true;
+            return false;
         }
 
         //Check if the device running this is unknown
