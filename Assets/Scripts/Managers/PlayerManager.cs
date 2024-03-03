@@ -30,7 +30,7 @@ public class PlayerManager : MonoBehaviour, IDamageable
         pooler = ObjectPooler.Instance;
         runnerScript.Init();
         bow.Init();
-
+        currentHealth = maxHp;
         ActionManager.PlayerDamage += TakeDamage;
     }
 

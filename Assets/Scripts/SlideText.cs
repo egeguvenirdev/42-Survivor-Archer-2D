@@ -27,7 +27,7 @@ public class SlideText : MonoBehaviour
     {
         text.text = value + symbol;
 
-        transform.parent = parentObj;
+        if(parentObj != null) transform.parent = parentObj;
         transform.position = pos;
         colorFade = color;
 
