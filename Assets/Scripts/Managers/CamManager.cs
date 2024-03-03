@@ -39,6 +39,8 @@ public class CamManager : MonoBehaviour
         ActionManager.Updater -= OnUpdate;
         ActionManager.CamShake -= OnCamShake;
         ActionManager.GetOrtograficScreenToWorldPoint -= OnGetOrtograficCam;
+
+        transform.position = Vector3.zero;
     }
 
     private void OnUpdate(float deltaTime)

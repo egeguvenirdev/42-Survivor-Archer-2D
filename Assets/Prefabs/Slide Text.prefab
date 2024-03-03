@@ -46,11 +46,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5eaf95d5abdd72841ace4ce2f9aabfa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  easeType: 15
+  lifeTime: 1
+  valueY: 2
   text: {fileID: 7180106220553065371}
   tmpPro: {fileID: 7180106220553065371}
-  colorFade:
-    serializedVersion: 2
-    rgba: 4278255360
 --- !u!114 &4991469491295391724
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -58,7 +58,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5965662044040928813}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 31f63910ed451af4f9a7d5a8d8ad7efb, type: 3}
   m_Name: 

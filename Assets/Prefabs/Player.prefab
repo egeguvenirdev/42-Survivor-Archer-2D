@@ -322,6 +322,7 @@ MonoBehaviour:
   runnerScript: {fileID: 126204315692894878}
   bow: {fileID: 1312985647548402767}
   characterTransform: {fileID: 7334631500952762661}
+  maxHp: 100
 --- !u!114 &126204315692894878
 MonoBehaviour:
   m_ObjectHideFlags: 0
