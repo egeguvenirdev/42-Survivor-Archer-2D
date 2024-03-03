@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
-public class RangedEnemy : EnemyBase
+public class MeeleEnemy : EnemyBase
 {
     private Vector3 playerPos;
 
@@ -37,29 +38,14 @@ public class RangedEnemy : EnemyBase
     {
         canMove = false;
         yield return new WaitForSeconds(1);
-        Fire();
+        ActionManager.PlayerDamage?.Invoke(attackDamage);
         yield return new WaitForSeconds(1);
         canMove = true;
     }
 
-    private void Fire()
-    {
-        PoolableObjectBase throwable = pooler.GetPooledObjectWithType(PoolObjectType.EnemyThrowable);
-        throwable.transform.position = transform.position;
-        throwable.transform.LookAt(playerPos);
-
-        Vector3 targetPos = (playerPos - throwable.transform.position).normalized;
-        float angle = Vector3.Angle(new Vector3(targetPos.x, 0, targetPos.y), Vector3.forward);
-        if (targetPos.x >= 0) angle *= -1f;
-        throwable.transform.rotation = Quaternion.Euler(0f, 0f, angle);
-
-        throwable.gameObject.SetActive(true);
-        throwable.Init();
-    }
-
     protected override void CheckDirection()
     {
-        if(playerPos.x <= transform.localScale.x) model.localScale = new Vector3(-1, 1, 1);
+        if (playerPos.x <= transform.localScale.x) model.localScale = new Vector3(-1, 1, 1);
         else model.localScale = Vector3.one;
     }
 }

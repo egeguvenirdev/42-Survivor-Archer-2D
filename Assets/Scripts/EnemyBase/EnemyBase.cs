@@ -12,7 +12,7 @@ public abstract class EnemyBase : PoolableObjectBase, IDamageable
 
     private float maxHealth;
     protected float range;
-    private float attackDamage;
+    protected float attackDamage;
     private float currentHealth;
 
     [Header("Animation")]

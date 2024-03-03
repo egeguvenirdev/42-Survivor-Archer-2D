@@ -61,10 +61,9 @@ public class ObjectPooler : MonoSingleton<ObjectPooler>
                 return pooledObjects[i];
             }
         }
-        //pooledObjects.First(o => o.activeInHierarchy && o.tag == tag);
         foreach (ObjectPooledItem item in itemsToPool)
         {
-            if (item.objectToPool.tag == tag)
+            if (item.objectToPool.GetComponent<PoolableObjectBase>().ObjectType == refType)
             {
                 if (item.shouldExpand)
                 {

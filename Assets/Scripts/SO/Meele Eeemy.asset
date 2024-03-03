@@ -9,13 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 817454a6615512d49b08ab9c19858d2b, type: 3}
-  m_Name: Enemy Wave Settings
+  m_Script: {fileID: 11500000, guid: d2ea4809c0e85fc43a3a1283ed80929a, type: 3}
+  m_Name: Meele Eeemy
   m_EditorClassIdentifier: 
-  wavePrefs:
-    enemyPrefab: 0100000002000000
-    enemyCountsByLevel: 0200000005000000
-    enemyCountPerWave: 10
-    coolDown: 10
-    delay: 1
-    radius: 3
+  characterPrefs:
+    speed: 1
+    range: 0.25
+    attackDamge: 5
+    maxHealth: 20
