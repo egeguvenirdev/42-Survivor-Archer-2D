@@ -196,22 +196,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Object Pooler
       objectReference: {fileID: 0}
-    - target: {fileID: 4191595481970433957, guid: c6282f0179621a644b771f60523675cc, type: 3}
-      propertyPath: itemsToPool.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4191595481970433957, guid: c6282f0179621a644b771f60523675cc, type: 3}
-      propertyPath: itemsToPool.Array.data[1].amountToPool
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 4191595481970433957, guid: c6282f0179621a644b771f60523675cc, type: 3}
-      propertyPath: itemsToPool.Array.data[1].objectToPool
-      value: 
-      objectReference: {fileID: 4082663428367585026, guid: 41c1d49e11bb6cd49b0ce708866db6d7, type: 3}
-    - target: {fileID: 4191595481970433957, guid: c6282f0179621a644b771f60523675cc, type: 3}
-      propertyPath: itemsToPool.Array.data[1].shouldExpand
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4191595481970433962, guid: c6282f0179621a644b771f60523675cc, type: 3}
       propertyPath: m_RootOrder
       value: 3

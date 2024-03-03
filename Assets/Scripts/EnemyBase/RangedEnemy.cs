@@ -45,7 +45,7 @@ public class RangedEnemy : EnemyBase
 
     private void Fire()
     {
-        PoolableObjectBase throwable = pooler.GetPooledObjectWithType(PoolObjectType.PlayerThrowable);
+        PoolableObjectBase throwable = pooler.GetPooledObjectWithType(PoolObjectType.EnemyThrowable);
         throwable.transform.position = transform.position;
         throwable.transform.LookAt(playerPos);
 

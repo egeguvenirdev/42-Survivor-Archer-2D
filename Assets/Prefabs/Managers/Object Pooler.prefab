@@ -46,6 +46,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemsToPool:
   - amountToPool: 10
+    objectToPool: {fileID: 6139176402853465222, guid: 0ef1d6a5a5986a9459de87b31b85deef, type: 3}
+    shouldExpand: 1
+  - amountToPool: 10
+    objectToPool: {fileID: 4082663428367585026, guid: 41c1d49e11bb6cd49b0ce708866db6d7, type: 3}
+    shouldExpand: 1
+  - amountToPool: 10
     objectToPool: {fileID: 6139176402853465222, guid: 0c79e3550330c0141b9f402a65aa9057, type: 3}
     shouldExpand: 1
   textsToPool: []

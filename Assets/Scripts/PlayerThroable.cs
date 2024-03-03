@@ -24,6 +24,7 @@ public class PlayerThroable : PoolableObjectBase
         canMove = false;
         remainingTime = 0;
         ActionManager.Updater -= OnUpdate;
+        gameObject.SetActive(false);
     }
 
     private void OnUpdate(float deltaTime)
@@ -31,5 +32,7 @@ public class PlayerThroable : PoolableObjectBase
         if (!canMove) return;
 
         transform.localPosition += deltaTime * speed * transform.up;
+        remainingTime -= deltaTime;
+        if (remainingTime <= 0) DeInit();
     }
 }

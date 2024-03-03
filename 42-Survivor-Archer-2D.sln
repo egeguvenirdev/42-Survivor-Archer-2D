@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoreMountains.Feedbacks.Nic
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoreMountains.Feedbacks.PostProcessing", "MoreMountains.Feedbacks.PostProcessing.csproj", "{0C7F1082-6951-259F-C954-D40C99261F2C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NavMeshPlus", "NavMeshPlus.csproj", "{2B756CC0-7260-9303-5DB0-BE5C4327D538}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoreMountains.Feedbacks.MMTools", "MoreMountains.Feedbacks.MMTools.csproj", "{60F677A5-A621-B844-85C3-E3E19C3A926C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoreMountains.Feedbacks.TextMeshPro", "MoreMountains.Feedbacks.TextMeshPro.csproj", "{D9B49367-E6E9-5206-56D0-7572C0C73840}"
@@ -45,8 +47,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoreMountains.Feedbacks.Cin
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoreMountains.Feedbacks.Authorizations", "MoreMountains.Feedbacks.Authorizations.csproj", "{BD40D5BA-D686-39A7-3118-A27DFA10757C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NavMeshPlus", "NavMeshPlus.csproj", "{2B756CC0-7260-9303-5DB0-BE5C4327D538}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoreMountains.Tools.Editor", "MoreMountains.Tools.Editor.csproj", "{5BCFE86E-3400-9D3D-CDBF-A07A6215A983}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-Editor", "Assembly-CSharp-Editor.csproj", "{231D66F4-8178-5F94-2E2E-B214235D300B}"
@@ -57,6 +57,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoreMountains.Feedbacks.Edi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PathCreatorEditor", "PathCreatorEditor.csproj", "{680F817B-68E1-5E91-1789-B9A0C9BAF15B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NavMeshPlusEditor", "NavMeshPlusEditor.csproj", "{73C591E5-50DD-38B6-4BC7-FDFE8A5E94B4}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Boxophobic.SkyboxCubemapExtended.Editor", "Boxophobic.SkyboxCubemapExtended.Editor.csproj", "{A77BAE06-005F-2E51-DF79-353BE59C0397}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plugins.Baedrick.ColoredHeaderCreator.Editor", "Plugins.Baedrick.ColoredHeaderCreator.Editor.csproj", "{C5542A47-46AE-D053-3855-DFEC756F3B4F}"
@@ -64,8 +66,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lofelt.NiceVibrations.Editor", "Lofelt.NiceVibrations.Editor.csproj", "{D68C7F65-A2D7-83DF-4A33-80B3318F55F5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sirenix.OdinInspector.Modules.UnityMathematics", "Sirenix.OdinInspector.Modules.UnityMathematics.csproj", "{47E9BB3A-61FE-1AC1-B7A2-153A801DF451}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NavMeshPlusEditor", "NavMeshPlusEditor.csproj", "{73C591E5-50DD-38B6-4BC7-FDFE8A5E94B4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -109,6 +109,10 @@ Global
 		{0C7F1082-6951-259F-C954-D40C99261F2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0C7F1082-6951-259F-C954-D40C99261F2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0C7F1082-6951-259F-C954-D40C99261F2C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B756CC0-7260-9303-5DB0-BE5C4327D538}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B756CC0-7260-9303-5DB0-BE5C4327D538}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B756CC0-7260-9303-5DB0-BE5C4327D538}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B756CC0-7260-9303-5DB0-BE5C4327D538}.Release|Any CPU.Build.0 = Release|Any CPU
 		{60F677A5-A621-B844-85C3-E3E19C3A926C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{60F677A5-A621-B844-85C3-E3E19C3A926C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{60F677A5-A621-B844-85C3-E3E19C3A926C}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -161,10 +165,6 @@ Global
 		{BD40D5BA-D686-39A7-3118-A27DFA10757C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BD40D5BA-D686-39A7-3118-A27DFA10757C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BD40D5BA-D686-39A7-3118-A27DFA10757C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2B756CC0-7260-9303-5DB0-BE5C4327D538}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2B756CC0-7260-9303-5DB0-BE5C4327D538}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2B756CC0-7260-9303-5DB0-BE5C4327D538}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2B756CC0-7260-9303-5DB0-BE5C4327D538}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5BCFE86E-3400-9D3D-CDBF-A07A6215A983}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5BCFE86E-3400-9D3D-CDBF-A07A6215A983}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5BCFE86E-3400-9D3D-CDBF-A07A6215A983}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -185,6 +185,10 @@ Global
 		{680F817B-68E1-5E91-1789-B9A0C9BAF15B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{680F817B-68E1-5E91-1789-B9A0C9BAF15B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{680F817B-68E1-5E91-1789-B9A0C9BAF15B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73C591E5-50DD-38B6-4BC7-FDFE8A5E94B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73C591E5-50DD-38B6-4BC7-FDFE8A5E94B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73C591E5-50DD-38B6-4BC7-FDFE8A5E94B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73C591E5-50DD-38B6-4BC7-FDFE8A5E94B4}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A77BAE06-005F-2E51-DF79-353BE59C0397}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A77BAE06-005F-2E51-DF79-353BE59C0397}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A77BAE06-005F-2E51-DF79-353BE59C0397}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -201,10 +205,6 @@ Global
 		{47E9BB3A-61FE-1AC1-B7A2-153A801DF451}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{47E9BB3A-61FE-1AC1-B7A2-153A801DF451}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{47E9BB3A-61FE-1AC1-B7A2-153A801DF451}.Release|Any CPU.Build.0 = Release|Any CPU
-		{73C591E5-50DD-38B6-4BC7-FDFE8A5E94B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{73C591E5-50DD-38B6-4BC7-FDFE8A5E94B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{73C591E5-50DD-38B6-4BC7-FDFE8A5E94B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{73C591E5-50DD-38B6-4BC7-FDFE8A5E94B4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
