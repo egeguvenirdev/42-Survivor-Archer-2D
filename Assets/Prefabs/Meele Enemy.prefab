@@ -108,6 +108,7 @@ MonoBehaviour:
   objectType: 3
   enemyInfos: {fileID: 11400000, guid: 4f65aba11e78f7843a11cf4a3efbda49, type: 2}
   model: {fileID: 4009860073502988067}
+  dropTypes: 0600000007000000
   animancer: {fileID: 4009860073502988078}
   idleAnim: {fileID: 7400000, guid: 3c4fa1f06e52d314f9208dc631cc099d, type: 2}
   runAnim: {fileID: 7400000, guid: 60d3e8535c9d0fe45bf1ff17d01c590b, type: 2}

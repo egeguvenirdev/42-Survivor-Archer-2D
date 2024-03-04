@@ -8,6 +8,7 @@ public abstract class EnemyBase : PoolableObjectBase, IDamageable
     [Header("Properties")]
     [SerializeField] protected EnemyInfos enemyInfos;
     [SerializeField] protected Transform model;
+    [SerializeField] protected PoolObjectType[] dropTypes;
     //[SerializeField] [EnumFlags] private DropType dropType;
 
     private float maxHealth;
@@ -91,7 +92,14 @@ public abstract class EnemyBase : PoolableObjectBase, IDamageable
         hitText.gameObject.SetActive(true);
         hitText.SetTheText("", (int)damage, Color.red, transform.position);
         vibration.SoftVibration();
-        if (currentHealth <= 0) DeInit();
+        if (currentHealth <= 0)
+        {
+            var drop = pooler.GetPooledObjectWithType(dropTypes[Random.Range(0, dropTypes.Length)]);
+            drop.gameObject.SetActive(true);
+            drop.transform.position = transform.position;
+            drop.Init();
+            DeInit();
+        }
     }
 
     private void OnFear(float duration)

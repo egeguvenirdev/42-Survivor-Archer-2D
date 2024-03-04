@@ -5550,7 +5550,6 @@ MonoBehaviour:
   skillButtons:
   - {fileID: 1273378723}
   - {fileID: 373761464}
-  upgradePanel: {fileID: 0}
   moveJoystick: {fileID: 260907309298075945}
   bowJoystick: {fileID: 9073219437621904074}
   currentLV: {fileID: 3066104948377910513}

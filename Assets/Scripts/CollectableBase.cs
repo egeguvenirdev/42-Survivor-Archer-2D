@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
-public class CollectableBase : MonoBehaviour, ICollectable
+public class CollectableBase : PoolableObjectBase, ICollectable
 {
     [SerializeField] private Vector3 rotateVelocity;
     [SerializeField] private Space rotateSpace;
     [SerializeField] private float speed = 4f;
     [SerializeField] private float value = 100f;
+    [SerializeField] private bool rotate;
     [SerializeField] private Vector3 maxHeight = new Vector3(0f, 0.5f, 0f);
 
     private Vector3 minHeight;
@@ -18,10 +19,12 @@ public class CollectableBase : MonoBehaviour, ICollectable
     private UIManager uIManager;
     private Camera mainCam;
 
-    public virtual void Init(bool rotate)
+
+    public override void Init()
     {
         minHeight = transform.position;
         canRotate = rotate;
+        gameObject.SetLayerRecursively("Collectable");
 
         if (uIManager == null) uIManager = UIManager.Instance;
         if (mainCam == null) mainCam = Camera.main;
@@ -40,17 +43,10 @@ public class CollectableBase : MonoBehaviour, ICollectable
         }
     }
 
-    public virtual void Collect(Transform target)
+    public virtual void Collect()
     {
         canRotate = false;
-        Vector3 targetPos = target.position;
-        transform.DOJump(targetPos, 1f, 1, 0.5f).OnUpdate(() =>
-        {
-            targetPos = target.position;
-        }).OnComplete(() =>
-        {
-            MoveMoneyArea();
-        });
+        MoveMoneyArea();
     }
 
     private void MoveMoneyArea()

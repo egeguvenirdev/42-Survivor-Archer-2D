@@ -28,7 +28,9 @@ public enum PoolObjectType
     RangeEnemy,
     MeeleEnemy,
     EnemyThrowable,
-    SlideText
+    SlideText,
+    Coin,
+    Health
 }
 
 [System.Flags]
