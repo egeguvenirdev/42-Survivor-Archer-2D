@@ -37,25 +37,25 @@ public abstract class EnemyBase : PoolableObjectBase, IDamageable
 
     public override void Init()
     {
+        ActionManager.AiUpdater += MoveTowardsPlayer;
+        ActionManager.GameEnd += OnGameEnd;
+        ActionManager.FearSkill += OnFear;
+
         agent.isStopped = false;
         agent.updateRotation = false;
         canMove = true;
         SetProperties();
-
-        ActionManager.AiUpdater += MoveTowardsPlayer;
-        ActionManager.GameEnd += OnGameEnd;
-        ActionManager.FearSkill += OnFear;
     }
 
     public void DeInit()
     {
-        agent.isStopped = true;
-        canMove = false;
-        gameObject.SetActive(false);
-
         ActionManager.AiUpdater -= MoveTowardsPlayer;
         ActionManager.GameEnd -= OnGameEnd;
         ActionManager.FearSkill -= OnFear;
+
+        agent.isStopped = true;
+        canMove = false;
+        gameObject.SetActive(false);
     }
 
     protected abstract void MoveTowardsPlayer(Vector3 player);

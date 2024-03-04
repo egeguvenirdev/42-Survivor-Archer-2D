@@ -9,10 +9,15 @@ public class MeeleEnemy : EnemyBase
 
     protected override void MoveTowardsPlayer(Vector3 player)
     {
+        if (!agent.navMeshOwner) return;
         playerPos = player;
         CheckDirection();
 
-        if (!canMove) return;
+        if (!canMove)
+        {
+            agent.SetDestination((transform.position - player) + transform.position);
+            return;
+        }
 
         agent.SetDestination(player * directionMultiplier);
         if (agent.remainingDistance > 0 && agent.remainingDistance < range)

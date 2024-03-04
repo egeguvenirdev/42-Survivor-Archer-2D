@@ -8,16 +8,15 @@ public class RangedEnemy : EnemyBase
 
     protected override void MoveTowardsPlayer(Vector3 player)
     {
+        if (!agent.navMeshOwner) return;
         playerPos = player;
         CheckDirection();
 
         if (!canMove)
         {
-
             agent.SetDestination((transform.position - player) + transform.position);
             return;
         }
-
 
         agent.SetDestination(player);
         if (agent.remainingDistance > 0 && agent.remainingDistance < range)
