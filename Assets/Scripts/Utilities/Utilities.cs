@@ -30,7 +30,8 @@ public enum PoolObjectType
     EnemyThrowable,
     SlideText,
     Coin,
-    Health
+    Health,
+    BloodParticle
 }
 
 [System.Flags]

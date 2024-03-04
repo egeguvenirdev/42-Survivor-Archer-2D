@@ -9,6 +9,7 @@ public abstract class EnemyBase : PoolableObjectBase, IDamageable
     [SerializeField] protected EnemyInfos enemyInfos;
     [SerializeField] protected Transform model;
     [SerializeField] protected PoolObjectType[] dropTypes;
+    [SerializeField] protected AudioClip clip;
     //[SerializeField] [EnumFlags] private DropType dropType;
 
     private float maxHealth;
@@ -86,12 +87,19 @@ public abstract class EnemyBase : PoolableObjectBase, IDamageable
     public void TakeDamage(float damage)
     {
         damage = Mathf.Clamp(damage, 0, float.MaxValue);
-        Debug.Log("enemydamage");
         currentHealth -= damage;
+
         SlideText hitText = pooler.GetPooledText();
         hitText.gameObject.SetActive(true);
         hitText.SetTheText("", (int)damage, Color.red, transform.position);
         vibration.SoftVibration();
+
+        var particle = pooler.GetPooledObjectWithType(PoolObjectType.BloodParticle);
+        particle.gameObject.SetActive(true);
+        particle.transform.position = transform.position;
+        particle.Init();
+
+        ActionManager.PlaySound?.Invoke(clip);
         if (currentHealth <= 0)
         {
             var drop = pooler.GetPooledObjectWithType(dropTypes[Random.Range(0, dropTypes.Length)]);
@@ -104,6 +112,7 @@ public abstract class EnemyBase : PoolableObjectBase, IDamageable
 
     private void OnFear(float duration)
     {
+        if (!gameObject.activeInHierarchy) return;
         StopAllCoroutines();
         StartCoroutine(FearCo(duration));
     }

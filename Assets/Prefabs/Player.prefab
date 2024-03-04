@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3aab8e5b6cabc2d47a3036e91196fad5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clip: {fileID: 8300000, guid: 323e15cfe809e114ab92c9f4b25e8bc2, type: 3}
   shootingCooldown: 1
   damage: 20
   aimHolder: {fileID: 5590426989397650942}
@@ -361,6 +362,7 @@ MonoBehaviour:
   skillManager: {fileID: 1511556061750694011}
   bow: {fileID: 1312985647548402767}
   characterTransform: {fileID: 7334631501480717707}
+  clip: {fileID: 8300000, guid: 2b21ef916f6943c439b71a7c74568878, type: 3}
   maxHp: 100
 --- !u!114 &126204315692894878
 MonoBehaviour:

@@ -48,6 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectType: 6
   rotateVelocity: {x: 0, y: 0, z: 0}
+  clip: {fileID: 8300000, guid: abdbbfd33a46f4549987385f85c536b5, type: 3}
   rotateSpace: 0
   speed: 4
   value: 100

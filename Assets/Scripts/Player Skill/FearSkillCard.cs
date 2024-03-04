@@ -33,7 +33,6 @@ public class FearSkillCard : PlayerSkillCardBase
 
     public void OnButtonClick(KeyCode key)
     {
-        Debug.Log("ref key: " + key + " keykode: " + keyCode);
         if (keyCode == key && currentCooldown <= 0)
         {
             ActionManager.PlayerSkillActivated?.Invoke(skillType);

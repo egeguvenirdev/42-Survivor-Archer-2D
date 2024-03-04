@@ -18,7 +18,6 @@ public class InputManager
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            Debug.Log("e key");
             ActionManager.InputType?.Invoke(KeyCode.E);
         }
     }

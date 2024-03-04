@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Bow : MonoBehaviour
 {
+    [SerializeField] private AudioClip clip;
     [SerializeField] private float shootingCooldown = 1f;
     [SerializeField] private float damage = 20f;
     [SerializeField] private Transform aimHolder;
@@ -47,6 +48,7 @@ public class Bow : MonoBehaviour
                 throwable.gameObject.SetActive(true);
                 throwable.GetComponent<ThrowableBase>().Damage = damage;
                 throwable.Init();
+                ActionManager.PlaySound?.Invoke(clip);
                 cooldownTimer = shootingCooldown;
             }
             else

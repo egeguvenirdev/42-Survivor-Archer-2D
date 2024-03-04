@@ -14,6 +14,7 @@ public static class ActionManager
     public static Action<KeyCode> InputType { get; set; }
     public static Action<bool> FireInput { get; set; }
     public static Action<bool> MoveInput { get; set; }
+    public static Action<AudioClip> PlaySound { get; set; }
 
     //MoneyActions
     public static Action<float> UpdateMoney { get; set; }

@@ -10,5 +10,6 @@ public class Coin : CollectableBase
     {
         base.Collect();
         ActionManager.UpdateMoney?.Invoke(money);
+        ActionManager.PlaySound?.Invoke(clip);
     }
 }

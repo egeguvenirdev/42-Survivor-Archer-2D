@@ -6,6 +6,7 @@ using DG.Tweening;
 public class CollectableBase : PoolableObjectBase, ICollectable
 {
     [SerializeField] private Vector3 rotateVelocity;
+    [SerializeField] protected AudioClip clip;
     [SerializeField] private Space rotateSpace;
     [SerializeField] private float speed = 4f;
     [SerializeField] private float value = 100f;

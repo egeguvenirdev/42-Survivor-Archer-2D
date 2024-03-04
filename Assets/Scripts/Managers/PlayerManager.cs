@@ -11,6 +11,7 @@ public class PlayerManager : MonoBehaviour, IDamageable
     [SerializeField] private SkillManager skillManager;
     [SerializeField] private Bow bow;
     [SerializeField] private Transform characterTransform;
+    [SerializeField] private AudioClip clip;
 
     [Header("Props")]
     [SerializeField] private float maxHp;
@@ -65,10 +66,18 @@ public class PlayerManager : MonoBehaviour, IDamageable
         //hitParticle.Play();
         ActionManager.CamShake?.Invoke();
         currentHealth -= damage;
+
         SlideText hitText = pooler.GetPooledText();
         hitText.gameObject.SetActive(true);
         hitText.SetTheText("", (int)damage, Color.red, characterTransform.position);
+
+        var particle = pooler.GetPooledObjectWithType(PoolObjectType.BloodParticle);
+        particle.gameObject.SetActive(true);
+        particle.transform.position = transform.position;
+        particle.Init();
+
         vibration.SoftVibration();
+        ActionManager.PlaySound?.Invoke(clip);
         if (currentHealth <= 0) gameManager.FinishTheGame(false);
     }
 

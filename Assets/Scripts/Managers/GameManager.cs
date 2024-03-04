@@ -18,6 +18,7 @@ public class GameManager : MonoSingleton<GameManager>
     private ObjectPooler pooler;
     private InputManager inputManager;
     private EnemySpawner enemySpawner;
+    private SoundManager soundManager;
 
     void Start()
     {
@@ -30,6 +31,7 @@ public class GameManager : MonoSingleton<GameManager>
         inputManager = new InputManager();
         updateManager = FindObjectOfType<UpdateManager>();
         camManager = FindObjectOfType<CamManager>();
+        soundManager = FindObjectOfType<SoundManager>();
 
         SetInits();
     }
@@ -41,6 +43,7 @@ public class GameManager : MonoSingleton<GameManager>
         moneyManager.Init();
         updateManager.Init();
         inputManager.Init();
+        soundManager.Init();
     }
 
     private void DeInits()
@@ -51,7 +54,8 @@ public class GameManager : MonoSingleton<GameManager>
         updateManager.DeInit();
         camManager.DeInit();
         pooler.DeInit();
-        inputManager.Init();
+        inputManager.DeInit();
+        soundManager.DeInit();
     }
 
     public void OnStartTheGame()

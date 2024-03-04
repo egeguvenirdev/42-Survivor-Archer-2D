@@ -10,5 +10,6 @@ public class Health : CollectableBase
     {
         base.Collect();
         ActionManager.PlayerDamage?.Invoke(health);
+        ActionManager.PlaySound?.Invoke(clip);
     }
 }
