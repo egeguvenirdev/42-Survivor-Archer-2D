@@ -54,6 +54,7 @@ public class PlayerManager : MonoBehaviour, IDamageable
     {
         damage = Mathf.Clamp(damage, 0, float.MaxValue);
         //hitParticle.Play();
+        ActionManager.CamShake?.Invoke();
         currentHealth -= damage;
         SlideText hitText = pooler.GetPooledText();
         hitText.gameObject.SetActive(true);

@@ -7,7 +7,7 @@ public class PlayerThrowable : ThrowableBase
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log("triggered");
-        if (collision.TryGetComponent(out IDamageable damagedObj))
+        if (collision.transform.parent.TryGetComponent(out IDamageable damagedObj))
         {
             damagedObj.TakeDamage(Damage);
             vibration.MediumVibration();

@@ -360,7 +360,7 @@ MonoBehaviour:
   keyRunner: {fileID: 4761627904468615617}
   skillManager: {fileID: 1511556061750694011}
   bow: {fileID: 1312985647548402767}
-  characterTransform: {fileID: 7334631500952762661}
+  characterTransform: {fileID: 7334631501480717707}
   maxHp: 100
 --- !u!114 &126204315692894878
 MonoBehaviour:
@@ -377,7 +377,7 @@ MonoBehaviour:
   bodySpeed: 2
   clampValueXpos: 45
   clampValueYpos: 45
-  character: {fileID: 7334631500952762661}
+  character: {fileID: 7334631501480717707}
   animancer: {fileID: 1440037956}
   run: {fileID: 7400000, guid: 3ecb1b6efbb23eb40aac6a82a8a9eab3, type: 2}
   idle: {fileID: 7400000, guid: c3efa3adc9a1c9f438274bbd8127bc3e, type: 2}
@@ -396,7 +396,7 @@ MonoBehaviour:
   bodySpeed: 2
   clampValueXpos: 45
   clampValueYpos: 45
-  character: {fileID: 7334631500952762661}
+  character: {fileID: 7334631501480717707}
   animancer: {fileID: 1440037956}
   run: {fileID: 7400000, guid: 3ecb1b6efbb23eb40aac6a82a8a9eab3, type: 2}
   idle: {fileID: 7400000, guid: c3efa3adc9a1c9f438274bbd8127bc3e, type: 2}

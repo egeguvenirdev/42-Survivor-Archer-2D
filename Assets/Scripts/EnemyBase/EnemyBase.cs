@@ -85,9 +85,10 @@ public abstract class EnemyBase : PoolableObjectBase, IDamageable
     public void TakeDamage(float damage)
     {
         damage = Mathf.Clamp(damage, 0, float.MaxValue);
-        //hitParticle.Play();
+        Debug.Log("enemydamage");
         currentHealth -= damage;
         SlideText hitText = pooler.GetPooledText();
+        hitText.gameObject.SetActive(true);
         hitText.SetTheText("", (int)damage, Color.red, transform.position);
         vibration.SoftVibration();
         if (currentHealth <= 0) DeInit();
