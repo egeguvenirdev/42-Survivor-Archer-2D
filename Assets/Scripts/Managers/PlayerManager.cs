@@ -57,7 +57,7 @@ public class PlayerManager : MonoBehaviour, IDamageable
         currentHealth -= damage;
         SlideText hitText = pooler.GetPooledText();
         hitText.gameObject.SetActive(true);
-        hitText.SetTheText("", (int)damage, Color.red, characterTransform, characterTransform.position);
+        hitText.SetTheText("", (int)damage, Color.red, characterTransform.position);
         vibration.SoftVibration();
         if (currentHealth <= 0) gameManager.FinishTheGame(false);
     }

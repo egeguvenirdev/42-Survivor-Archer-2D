@@ -42,7 +42,7 @@ public class Bow : MonoBehaviour
             if (cooldownTimer <= 0)
             {
                 PoolableObjectBase throwable = pooler.GetPooledObjectWithType(PoolObjectType.PlayerThrowable);
-                throwable.transform.position = transform.position;
+                throwable.transform.position = new Vector3(transform.position.x, transform.position.y, 0);
                 throwable.transform.rotation = Quaternion.Euler(0, 0, angle);
                 throwable.gameObject.SetActive(true);
                 throwable.GetComponent<ThrowableBase>().Damage = damage;

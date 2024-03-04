@@ -11,7 +11,14 @@ public class ThrowableBase : PoolableObjectBase
     private bool canMove;
     private float damage;
 
+    protected VibrationManager vibration;
+
     public float Damage { get => damage; set => damage = value; }
+
+    private void Start()
+    {
+        vibration = VibrationManager.Instance;
+    }
 
     public override void Init()
     {

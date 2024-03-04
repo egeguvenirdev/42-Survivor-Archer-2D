@@ -53,8 +53,8 @@ public abstract class EnemyBase : PoolableObjectBase, IDamageable
         ActionManager.GameEnd -= OnGameEnd;
         ActionManager.FearSkill -= OnFear;
 
-        agent.isStopped = true;
-        canMove = false;
+        if (agent.navMeshOwner) agent.isStopped = true;
+        if (agent.navMeshOwner) canMove = false;
         gameObject.SetActive(false);
     }
 
@@ -88,7 +88,7 @@ public abstract class EnemyBase : PoolableObjectBase, IDamageable
         //hitParticle.Play();
         currentHealth -= damage;
         SlideText hitText = pooler.GetPooledText();
-        hitText.SetTheText("", (int)damage, Color.red, null, transform.position);
+        hitText.SetTheText("", (int)damage, Color.red, transform.position);
         vibration.SoftVibration();
         if (currentHealth <= 0) DeInit();
     }

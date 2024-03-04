@@ -50,7 +50,7 @@ public class RangedEnemy : EnemyBase
     private void Fire()
     {
         PoolableObjectBase throwable = pooler.GetPooledObjectWithType(PoolObjectType.EnemyThrowable);
-        throwable.transform.position = transform.position;
+        throwable.transform.position = new Vector3(transform.position.x, transform.position.y, 0);
         throwable.transform.LookAt(playerPos);
 
         Vector3 targetPos = (playerPos - throwable.transform.position).normalized;

@@ -23,11 +23,9 @@ public class SlideText : MonoBehaviour
         pooler = ObjectPooler.Instance;
     }
 
-    public void SetTheText(string symbol, int value, Color color, Transform parentObj, Vector3 pos)
+    public void SetTheText(string symbol, int value, Color color, Vector3 pos)
     {
         text.text = value + symbol;
-
-        if(parentObj != null) transform.parent = parentObj;
         transform.position = pos;
         colorFade = color;
 
@@ -45,7 +43,6 @@ public class SlideText : MonoBehaviour
 
         yield return CoroutineManager.GetTime(lifeTime, 30f);
 
-        transform.parent = pooler.transform;
         gameObject.SetActive(false);
     }
 }

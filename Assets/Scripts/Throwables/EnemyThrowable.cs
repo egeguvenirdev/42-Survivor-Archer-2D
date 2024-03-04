@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class EnemyThrowable : ThrowableBase
 {
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (other.TryGetComponent<IDamageable>(out IDamageable damagedObj))
+        Debug.Log("triggered");
+        if (collision.TryGetComponent(out IDamageable damagedObj))
         {
             damagedObj.TakeDamage(Damage);
+            vibration.MediumVibration();
+            DeInit();
         }
     }
 }
