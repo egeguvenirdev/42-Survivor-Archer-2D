@@ -186,7 +186,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 18105601139653782, guid: 6ed38972fd0f4024c91aca33394d3cdd, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -194,7 +194,7 @@ SpriteRenderer:
   m_Size: {x: 0.54, y: 0.52}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &4082663428367585026
@@ -248,6 +248,7 @@ MonoBehaviour:
   enemyInfos: {fileID: 11400000, guid: 2a7f98c6eb9fd1e468c582f5a534bb72, type: 2}
   model: {fileID: 4082663427740686281}
   dropTypes: 0600000007000000
+  clip: {fileID: 0}
   animancer: {fileID: 4082663427740686276}
   idleAnim: {fileID: 7400000, guid: 0ece4737e1d7ee546bd5c3f9b2b728f8, type: 2}
   runAnim: {fileID: 7400000, guid: 9344a5f1bf9674d4a95ae75f5534cb8b, type: 2}
