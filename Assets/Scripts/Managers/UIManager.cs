@@ -9,10 +9,8 @@ public class UIManager : MonoSingleton<UIManager>
 {
     [Header("Panels")]
     [SerializeField] private ButtonBase[] panels;
-    [SerializeField] private UpgradeCard[] upgradeButtons;
     [SerializeField] private GameObject[] InGameUis;
     [SerializeField] private PlayerSkillCardBase[] skillButtons;
-    [SerializeField] private ButtonBase upgradePanel;
     [SerializeField] private VariableJoystick moveJoystick;
     [SerializeField] private VariableJoystick bowJoystick;
 
@@ -48,16 +46,12 @@ public class UIManager : MonoSingleton<UIManager>
 
     public void Init(bool mobileDeviceCheck)
     {
+        mobileCheck = mobileDeviceCheck;
         levelManager = LevelManager.Instance;
         ActionManager.GameStart += OpenInGameUis;
         ActionManager.GameEnd += CloseInGameUis;
-        mobileCheck = mobileDeviceCheck;
-        LevelText();
 
-        for (int i = 0; i < upgradeButtons.Length; i++)
-        {
-            upgradeButtons[i].Init();
-        }
+        LevelText();
 
         for (int i = 0; i < panels.Length; i++)
         {
@@ -75,11 +69,6 @@ public class UIManager : MonoSingleton<UIManager>
     {
         ActionManager.GameStart -= OpenInGameUis;
         ActionManager.GameEnd -= CloseInGameUis;
-
-        for (int i = 0; i < upgradeButtons.Length; i++)
-        {
-            upgradeButtons[i].DeInit();
-        }
 
         for (int i = 0; i < panels.Length; i++)
         {
@@ -113,21 +102,12 @@ public class UIManager : MonoSingleton<UIManager>
         progressBarImage.fillAmount = progress;
     }
 
-    public void UpgradeButtons()
-    {
-        for (int i = 0; i < upgradeButtons.Length; i++)
-        {
-            upgradeButtons[i].OnPurchase();
-        }
-    }
-
     private void OpenInGameUis()
     {
         for (int i = 0; i < InGameUis.Length; i++)
         {
             InGameUis[i].SetActive(true);
         }
-
         if (!mobileCheck) moveJoystick.gameObject.SetActive(false);
     }
 
@@ -137,7 +117,6 @@ public class UIManager : MonoSingleton<UIManager>
         {
             InGameUis[i].SetActive(false);
         }
-        upgradePanel.DeInit();
     }
 
     #region Money
@@ -156,8 +135,6 @@ public class UIManager : MonoSingleton<UIManager>
             smoothMoneyNumbers = totalMoney;
             UpdateMoneyText();
         }
-
-        UpgradeButtons();
     }
 
     private void UpdateMoneyText()
